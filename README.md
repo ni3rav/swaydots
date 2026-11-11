@@ -20,7 +20,7 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 | `fonts` | fonts + fontconfig |
 | `git` | `~/.gitconfig` |
 | `code` | VS Code User settings/keybindings |
-| `cursor` | Cursor User settings/keybindings |
+| `cursor` | Cursor editor settings, plus `~/.cursor/cli-config.json` for the agent CLI |
 
 Thin thread: Sway moves windows; every GUI verb is `noctalia msg …`. Qt apps need `qt6ct` + `QT_QPA_PLATFORMTHEME=qt6ct` (stowed; re-login after first stow).
 
@@ -37,7 +37,7 @@ Enabled templates:
 | lazydocker, antigravity | Hooks write their own configs. Those files are not stowed. |
 | libreoffice, brave, brave-origin, chromium-based | Enabled. The hooks need the app installed (and a browser profile, or Chromium's one-time policy setup) before they can write. |
 
-`extra/restore-fedora.sh` installs fastfetch, Papirus, and the Cursor agent CLI (`agent` on `~/.local/bin`), stows the packages above, then runs `noctalia msg templates-apply`. Super+E opens Noctalia settings.
+`extra/restore-fedora.sh` installs fastfetch, Papirus, and the Cursor agent CLI (`agent` on `~/.local/bin`), stows the packages above, then runs `noctalia msg templates-apply`. Super+E opens Noctalia settings. Super+D hides windows and Super+Shift+D hides the focused one; press again to restore. The lock screen fades in over 200 ms.
 
 ```bash
 git clone --recurse-submodules <repo-url> ~/swaydots

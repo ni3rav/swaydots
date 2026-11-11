@@ -2,19 +2,19 @@
 
 | Package | Home targets | Notes |
 |---------|--------------|--------|
-| `sway` | `~/.config/sway` | Modular `config.d/`; no Fedora `/etc/sway/config` (avoids `$mod+d` → rofi) |
+| `sway` | `~/.config/sway` | Modular `config.d/`; no Fedora `/etc/sway/config` |
 | `xdg` | mimeapps, portals, terminals, autostart hides | Dolphin + Kate; Ghostty terminal; `wlr;gtk` portals |
 | `zsh` | `~/.zshrc`, `~/.zsh` | Plugin submodules; one `.zshrc` |
 | `starship` | `~/.config/starship.toml` | COPR `atim/starship` |
 | `ghostty` | `~/.config/ghostty/config.ghostty` | TokyoNight + JetBrainsMono NF |
 | `fonts` | fonts + fontconfig | JetBrainsMono NF, Plus Jakarta Sans, Noto Indic |
 | `git` | `~/.gitconfig` | |
-| `code` / `cursor` | User settings/keybindings | |
+| `code` / `cursor` | User settings/keybindings | `cursor` also stows `~/.cursor/cli-config.json` (no account caches) |
 
 ## Sway
 
 - Includes `/etc/sway/config.d/*` (Fedora `sway-systemd`) then `config.d/*.conf`.
-- `$mod+d` intentionally unbound.
+- `$mod+d` hides windows (`toggle-windows.sh`); `$mod+Shift+d` hides the focused window. Press again to restore.
 - Caps→Esc via `input type:keyboard { xkb_options caps:escape }`.
 - Apps: Ghostty (`$mod+Return`), Dolphin (`$mod+f`), Firefox (`$mod+b`).
 - Noctalia IPC via `$ipc` (`noctalia msg`): launcher, clipboard, settings, control center (`$mod+o`), media, screenshots, lock.
@@ -35,7 +35,7 @@
 ```bash
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg noctalia zsh starship ghostty fonts git code cursor
+stow -v --no-folding sway xdg noctalia zsh starship ghostty fonts git code cursor fastfetch herdr opencode
 ```
 
 Never stow `extra/`, `.skills/`, `.git`, `.cursor`. Restore: `bash extra/restore-fedora.sh`.

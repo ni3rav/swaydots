@@ -162,3 +162,8 @@ show_all_outputs = true
 [osd.kinds]
 media = false
 
+[lockscreen]
+transition = ["fade"]
+transition_duration = 200
+edge_smoothness = 0
+
