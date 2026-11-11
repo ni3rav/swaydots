@@ -35,7 +35,7 @@
 ```bash
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg zsh starship ghostty fonts git code cursor
+stow -v --no-folding sway xdg noctalia zsh starship ghostty fonts git code cursor
 ```
 
 Never stow `extra/`, `.skills/`, `.git`, `.cursor`. Restore: `bash extra/restore-fedora.sh`.

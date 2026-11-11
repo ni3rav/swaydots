@@ -95,7 +95,7 @@ step_core_packages() {
     python3-pip \
     sway sway-systemd xdg-user-dirs \
     noctalia \
-    dolphin kate \
+    dolphin kate qt6ct \
     gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb libmtp \
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
@@ -394,7 +394,7 @@ step_dotfiles() {
 
   local pkgs=()
   local p
-  for p in sway xdg ghostty zsh starship fonts git code cursor; do
+  for p in sway xdg noctalia ghostty zsh starship fonts git code cursor; do
     [[ -d "$DOTFILES_DIR/$p" ]] && pkgs+=("$p")
   done
   ((${#pkgs[@]})) || { err "no stow packages found under $DOTFILES_DIR"; return 1; }

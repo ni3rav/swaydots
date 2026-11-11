@@ -9,7 +9,8 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 | Package | Maps to |
 |---------|---------|
 | `sway` | `~/.config/sway` — keybinds/WM only; Noctalia for launcher/OSD/bar/lock |
-| `xdg` | mimeapps (Dolphin/Kate), portals (`wlr;gtk`), Ghostty terminal list |
+| `xdg` | mimeapps, portals, `environment.d` + `qt6ct` for Qt theming |
+| `noctalia` | bar + theme templates (GTK/Qt/KColorScheme) |
 | `zsh` | `~/.zshrc`, `~/.zsh` plugins (submodules) |
 | `starship` | `~/.config/starship.toml` |
 | `ghostty` | `~/.config/ghostty/config.ghostty` |
@@ -18,13 +19,13 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 | `code` | VS Code User settings/keybindings |
 | `cursor` | Cursor User settings/keybindings |
 
-Thin thread: Sway moves windows; every GUI verb is `noctalia msg …`.
+Thin thread: Sway moves windows; every GUI verb is `noctalia msg …`. Qt apps need `qt6ct` + `QT_QPA_PLATFORMTHEME=qt6ct` (stowed; re-login after first stow).
 
 ```bash
 git clone --recurse-submodules <repo-url> ~/swaydots
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg zsh starship ghostty fonts git code cursor
+stow -v --no-folding sway xdg noctalia zsh starship ghostty fonts git code cursor
 fc-cache -fv
 ```
 
