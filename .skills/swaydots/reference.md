@@ -26,6 +26,7 @@
 - Autostart: `exec noctalia` in `10-autostart.conf`.
 - Install: `sudo dnf install noctalia` (Fedora 44+).
 - Greeter: Terra → `noctalia-greeter`; cutover only with `SWAYDOTS_ENABLE_GREETD=1`.
+- Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
 
 ## Stow
 
