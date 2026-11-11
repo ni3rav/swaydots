@@ -100,7 +100,7 @@ step_core_packages() {
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
     playerctl \
-    power-profiles-daemon gnome-control-center gnome-system-monitor \
+    gnome-control-center gnome-system-monitor \
     gnome-clocks snapshot \
     xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
     jq \
