@@ -13,14 +13,14 @@ Repo: `~/swaydots`. Stow maps packages into `$HOME`.
 
 ## Rules
 
-1. One shell config: stowed `zsh/.zshrc` only (when package exists). Never `.zshrc.local`.
+1. One shell config: stowed `zsh/.zshrc` only. Never `.zshrc.local`.
 2. Edit in the repo (live paths are symlinks).
 3. Never stow `extra/`, `.skills/`, `.git`, `.cursor`, or docs.
 4. Always `stow -v --no-folding <pkgs…>` from repo root.
 5. Surgical changes only; match existing style.
 6. Thin thread: **Sway = WM/keybinds only**; **Noctalia = bar/launcher/OSD/lock/screenshots**.
 
-Packages (today): `sway` `xdg`. Grow list as added: `ghostty` `zsh` `starship` `fonts` `git` `code` `cursor`.
+Packages: `sway` `xdg` `zsh` `starship` `ghostty` `fonts` `git` `code` `cursor`.
 
 See [reference.md](reference.md) and [workflows.md](workflows.md).
 
@@ -32,7 +32,7 @@ stow -n -v --no-folding <pkg>…
 stow -v --no-folding <pkg>…
 ```
 
-Sway → `swaymsg reload`. Fonts → `fc-cache -fv`.
+Sway → `swaymsg reload`. Fonts → `fc-cache -fv`. Zsh plugins → `git submodule update --init --recursive`.
 
 If Stow hits a real file: move aside (`*.pre-stow`), restow. Don’t `--adopt` unless asked.
 

@@ -24,7 +24,7 @@ cd ~/swaydots && stow -v --no-folding zsh
 ```bash
 bash ~/swaydots/extra/restore-fedora.sh
 cd ~/swaydots
-stow -n -v --no-folding sway
+stow -n -v --no-folding sway xdg zsh starship ghostty fonts git code cursor
 sway -C -c ~/.config/sway/config
 readlink -f ~/.config/sway/config
 ```

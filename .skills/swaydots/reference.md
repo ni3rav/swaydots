@@ -4,10 +4,10 @@
 |---------|--------------|--------|
 | `sway` | `~/.config/sway` | Modular `config.d/`; no Fedora `/etc/sway/config` (avoids `$mod+d` → rofi) |
 | `xdg` | mimeapps, portals, terminals, autostart hides | Dolphin + Kate; Ghostty terminal; `wlr;gtk` portals |
-| `ghostty` | (when added) | Terminal |
-| `zsh` | `~/.zshrc`, `~/.zsh` | One `.zshrc` |
+| `zsh` | `~/.zshrc`, `~/.zsh` | Plugin submodules; one `.zshrc` |
 | `starship` | `~/.config/starship.toml` | COPR `atim/starship` |
-| `fonts` | fonts + fontconfig | JetBrainsMono NF |
+| `ghostty` | `~/.config/ghostty/config.ghostty` | TokyoNight + JetBrainsMono NF |
+| `fonts` | fonts + fontconfig | JetBrainsMono NF, Plus Jakarta Sans, Noto Indic |
 | `git` | `~/.gitconfig` | |
 | `code` / `cursor` | User settings/keybindings | |
 
@@ -28,14 +28,15 @@
 - Greeter: Terra → `noctalia-greeter`; cutover only with `SWAYDOTS_ENABLE_GREETD=1`.
 - Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
 - Desktop apps lean KDE/Qt: Dolphin, Kate, `plasma-systemsettings`, `plasma-systemmonitor`, `kclock`, `kamoso`.
-- Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst` (`systemctl --user mask dunst.service`).
-- Purge Sway-spin leftovers on restore: Thunar, rofi, foot, xfce4-panel (Ghostty/Dolphin/Noctalia replace them).
+- Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst`.
+- Purge Sway-spin leftovers on restore: Thunar, rofi, foot, xfce4-panel.
 
 ## Stow
 
 ```bash
 cd ~/swaydots
-stow -v --no-folding sway
+git submodule update --init --recursive
+stow -v --no-folding sway xdg zsh starship ghostty fonts git code cursor
 ```
 
 Never stow `extra/`, `.skills/`, `.git`, `.cursor`. Restore: `bash extra/restore-fedora.sh`.

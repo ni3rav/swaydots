@@ -10,14 +10,22 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 |---------|---------|
 | `sway` | `~/.config/sway` — keybinds/WM only; Noctalia for launcher/OSD/bar/lock |
 | `xdg` | mimeapps (Dolphin/Kate), portals (`wlr;gtk`), Ghostty terminal list |
+| `zsh` | `~/.zshrc`, `~/.zsh` plugins (submodules) |
+| `starship` | `~/.config/starship.toml` |
+| `ghostty` | `~/.config/ghostty/config.ghostty` |
+| `fonts` | fonts + fontconfig |
+| `git` | `~/.gitconfig` |
+| `code` | VS Code User settings/keybindings |
+| `cursor` | Cursor User settings/keybindings |
 
 Thin thread: Sway moves windows; every GUI verb is `noctalia msg …`.
 
 ```bash
-git clone <repo-url> ~/swaydots
+git clone --recurse-submodules <repo-url> ~/swaydots
 cd ~/swaydots
-stow -v --no-folding sway xdg
+git submodule update --init --recursive
+stow -v --no-folding sway xdg zsh starship ghostty fonts git code cursor
+fc-cache -fv
 ```
-
 
 Fresh machine: `bash extra/restore-fedora.sh`
