@@ -158,6 +158,31 @@ step_notifications_noctalia() {
   ok "dunst masked; Noctalia owns notifications"
 }
 
+step_purge_stale() {
+  sudo dnf remove -y --setopt=install_weak_deps=False \
+    Thunar thunar-archive-plugin tumbler \
+    rofi rofi-themes \
+    foot \
+    xfce4-panel \
+    mousepad xfce4-terminal \
+    dmenu bemenu wofi \
+    2>/dev/null || true
+
+  local stale=(
+    "$HOME/.config/Thunar"
+    "$HOME/.config/xfce4"
+    "$HOME/.config/rofi"
+    "$HOME/.config/foot"
+  )
+  local p
+  for p in "${stale[@]}"; do
+    if [[ -e "$p" || -L "$p" ]]; then
+      rm -rf "$p"
+      ok "removed stale $p"
+    fi
+  done
+}
+
 step_noctalia_greeter_pkgs() {
   if rpm -q terra-release >/dev/null 2>&1; then
     ok "terra-release already installed"
@@ -403,6 +428,7 @@ main() {
   run_step "Configure /etc/dnf/dnf.conf" step_dnf_config
   run_step "Upgrade system packages" step_dnf_upgrade
   run_step "Install core packages (sway + noctalia)" step_core_packages
+  run_step "Purge Sway-spin leftovers (rofi/Thunar/foot/…)" step_purge_stale
   run_step "Install Noctalia (ensure)" step_noctalia
   run_step "Hand notifications to Noctalia" step_notifications_noctalia
   run_step "Install Ghostty (COPR)" step_ghostty
