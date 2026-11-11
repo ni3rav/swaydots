@@ -20,7 +20,7 @@ Repo: `~/swaydots`. Stow maps packages into `$HOME`.
 5. Surgical changes only; match existing style.
 6. Thin thread: **Sway = WM/keybinds only**; **Noctalia = bar/launcher/OSD/lock/screenshots**.
 
-Packages (today): `sway`. Grow list as added: `ghostty` `zsh` `starship` `fonts` `git` `code` `cursor` `xdg`.
+Packages (today): `sway` `xdg`. Grow list as added: `ghostty` `zsh` `starship` `fonts` `git` `code` `cursor`.
 
 See [reference.md](reference.md) and [workflows.md](workflows.md).
 
