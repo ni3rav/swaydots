@@ -383,10 +383,7 @@ step_papirus_icons() {
 }
 
 step_firefox_theme() {
-  need_cmd noctalia || { err "noctalia missing"; return 1; }
-  noctalia firefox-theme install
-  sudo mkdir -p /etc/firefox/policies
-  sudo cp "$DOTFILES_DIR/extra/firefox-policies.json" /etc/firefox/policies/policies.json
+  bash "$DOTFILES_DIR/extra/firefox-theme.sh"
   ok "Pywalfox host installed; Firefox force-installs the extension on next start"
 }
 
