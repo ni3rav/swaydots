@@ -1,0 +1,38 @@
+# Version control (never symlink into $HOME)
+\.git
+\.gitignore
+\.gitattributes
+\.gitmodules
+\.github
+\.cursor
+
+# Agent skills (repo-local; never symlink into $HOME)
+\.skills
+^/\.skills
+^/\.skills/.*
+
+# Repo docs / license
+^/README.*
+^/LICENSE.*
+^/COPYING.*
+^/CHANGELOG.*
+\.md$
+
+# Non-stow tree: restore helpers + theme packs (edit in-repo only)
+^/extra
+^/extra/.*
+
+# Editor / OS junk
+\.DS_Store
+\.idea
+\.vscode
+.+~
+\#.*\#
+.*\.swp
+.*\.swo
+
+# Build / cache inside packages
+__pycache__
+.*\.py[cod]
+\.venv
+venv

@@ -1,0 +1,43 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*~
+\#*\#
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Local / secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Stow / backup noise
+*.bak
+*.orig
+*.rej
+.stow-local-ignore~
+
+# VS Code — only keep User settings/keybindings (when package exists)
+code/.config/Code/*
+!code/.config/Code/User/
+code/.config/Code/User/*
+!code/.config/Code/User/settings.json
+!code/.config/Code/User/keybindings.json
+
+# Cursor IDE — only keep User settings/keybindings (when package exists)
+cursor/.config/Cursor/*
+!cursor/.config/Cursor/User/
+cursor/.config/Cursor/User/*
+!cursor/.config/Cursor/User/settings.json
+!cursor/.config/Cursor/User/keybindings.json
