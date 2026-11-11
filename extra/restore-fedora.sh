@@ -95,7 +95,7 @@ step_core_packages() {
     python3-pip \
     sway sway-systemd xdg-user-dirs \
     noctalia \
-    dolphin kate qt6ct kio-extras \
+    dolphin kate qt6ct kio-extras ark \
     gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb libmtp \
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
@@ -160,7 +160,7 @@ step_notifications_noctalia() {
 
 step_purge_stale() {
   sudo dnf remove -y --setopt=install_weak_deps=False \
-    Thunar thunar-archive-plugin tumbler \
+    Thunar thunar-archive-plugin tumbler xarchiver \
     rofi rofi-themes \
     foot \
     xfce4-panel \
@@ -173,6 +173,7 @@ step_purge_stale() {
     "$HOME/.config/xfce4"
     "$HOME/.config/rofi"
     "$HOME/.config/foot"
+    "$HOME/.config/xarchiver"
   )
   local p
   for p in "${stale[@]}"; do
@@ -429,6 +430,12 @@ step_dotfiles() {
   [[ -L "$HOME/.config/sway/config" ]] \
     || { err "~/.config/sway/config is not a stow symlink"; return 1; }
   ok "sway config stowed"
+
+  if need_cmd noctalia && noctalia msg templates-apply >/dev/null 2>&1; then
+    ok "noctalia templates applied (gtk, qt, ghostty, sway)"
+  else
+    warn "noctalia templates not applied; they run once Noctalia is up"
+  fi
 }
 
 main() {

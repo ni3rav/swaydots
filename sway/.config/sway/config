@@ -1,2 +1,4 @@
 include /etc/sway/config.d/*
 include config.d/*.conf
+
+include ~/.config/sway/noctalia
