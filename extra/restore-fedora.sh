@@ -199,34 +199,35 @@ step_noctalia_greeter_pkgs() {
 step_greetd_cutover() {
   if [[ "${SWAYDOTS_ENABLE_GREETD:-0}" != "1" ]]; then
     warn "skip greetd cutover (set SWAYDOTS_ENABLE_GREETD=1 to enable)"
-    warn "after pkgs: point /etc/greetd/config.toml at noctalia-greeter-session"
     return 0
   fi
 
-  local session
-  session=$(command -v noctalia-greeter-session) \
+  need_cmd noctalia-greeter-session \
     || { err "noctalia-greeter-session not on PATH"; return 1; }
+
+  if [[ -x /usr/share/noctalia-greeter/setup_greeter_system.sh ]]; then
+    sudo bash /usr/share/noctalia-greeter/setup_greeter_system.sh || true
+  fi
+  sudo noctalia-greeter-apply-appearance --setup-system 2>/dev/null || true
 
   sudo mkdir -p /etc/greetd
   if [[ -f /etc/greetd/config.toml ]]; then
     sudo cp -a /etc/greetd/config.toml "/etc/greetd/config.toml.pre-swaydots"
   fi
-  sudo tee /etc/greetd/config.toml >/dev/null <<EOF
+  sudo tee /etc/greetd/config.toml >/dev/null <<'EOF'
 [terminal]
 vt = 1
 
 [default_session]
-command = "${session}"
-user = "greeter"
+command = "/usr/bin/noctalia-greeter-session"
+user = "greetd"
 EOF
 
-  local dm
-  dm=$(systemctl status display-manager.service 2>/dev/null | awk -F"[' ]" '/Loaded:/{print $2; exit}')
-  if [[ -n "${dm:-}" && "$dm" != "greetd.service" ]]; then
-    warn "disabling display manager: $dm"
-    sudo systemctl disable --now "$dm" || true
-  fi
-  sudo systemctl enable --now greetd
+  sudo systemctl disable --now sddm.service 2>/dev/null || true
+  sudo systemctl disable --now gdm.service 2>/dev/null || true
+  sudo systemctl disable --now lightdm.service 2>/dev/null || true
+  sudo systemctl enable greetd.service
+  warn "greetd enabled — reboot to use Noctalia greeter (do not stop the live DM mid-session)"
 }
 
 step_charm() {

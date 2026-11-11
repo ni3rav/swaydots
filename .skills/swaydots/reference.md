@@ -25,7 +25,7 @@
 
 - Autostart: `exec noctalia` in `10-autostart.conf`.
 - Install: `sudo dnf install noctalia` (Fedora 44+).
-- Greeter: Terra → `noctalia-greeter`; cutover only with `SWAYDOTS_ENABLE_GREETD=1`.
+- Greeter: Terra → `noctalia-greeter`; cutover with `SWAYDOTS_ENABLE_GREETD=1` then **reboot**. Fedora uses `user = "greetd"` in `/etc/greetd/config.toml`.
 - Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
 - Desktop apps lean KDE/Qt: Dolphin, Kate, `plasma-systemsettings`, `plasma-systemmonitor`, `kclock`, `kamoso`.
 - Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst`.
