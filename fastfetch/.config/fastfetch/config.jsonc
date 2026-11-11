@@ -1,0 +1,40 @@
+{
+  "logo": {
+    "type": "auto",
+    "color": {
+      "1": "#63ffff",
+      "2": "#63c6c6"
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "#ffffff",
+      "title": "#c6c6c6"
+    },
+    "percent": {
+      "color": {
+        "green": "#e2e2e2",
+        "yellow": "#474747",
+        "red": "#ffb4ab"
+      }
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "wm",
+    "terminal",
+    "cpu",
+    "memory",
+    "disk",
+    "battery",
+    "break",
+    "colors"
+  ]
+}

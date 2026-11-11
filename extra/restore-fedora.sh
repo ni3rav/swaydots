@@ -100,6 +100,7 @@ step_core_packages() {
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
     playerctl \
+    fastfetch \
     plasma-systemsettings plasma-systemmonitor kclock kamoso \
     xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
     jq \
@@ -351,10 +352,8 @@ step_cursor_cli() {
   curl -fsS https://cursor.com/install | bash
   restore_zshrc_if_clobbered
   refresh_path
-  if need_cmd agent || need_cmd cursor-agent || need_cmd cursor; then
-    need_cmd agent && agent --version 2>/dev/null || true
-    need_cmd cursor-agent && ok "cursor-agent present" || true
-    need_cmd cursor && cursor --version || true
+  if need_cmd agent; then
+    ok "cursor agent $(agent --version 2>/dev/null || echo installed)"
     return 0
   fi
   err "cursor agent binary not found on PATH"
@@ -405,7 +404,7 @@ step_dotfiles() {
 
   local pkgs=()
   local p
-  for p in sway xdg noctalia ghostty zsh starship fonts git code cursor; do
+  for p in sway xdg noctalia ghostty zsh starship fonts git code cursor fastfetch herdr opencode; do
     [[ -d "$DOTFILES_DIR/$p" ]] && pkgs+=("$p")
   done
   ((${#pkgs[@]})) || { err "no stow packages found under $DOTFILES_DIR"; return 1; }
@@ -462,7 +461,7 @@ main() {
   run_step "Install uv" step_uv
   run_step "Install OpenCode" step_opencode
   run_step "Install VS Code" step_vscode
-  run_step "Install Cursor CLI" step_cursor_cli
+  run_step "Install Cursor agent CLI" step_cursor_cli
   run_step "Install Flatpak apps (OBS, OnlyOffice, Resources)" step_flatpaks
   run_step "Install GitHub CLI" step_github_cli
   run_step "Install Papirus icon theme" step_papirus_icons
