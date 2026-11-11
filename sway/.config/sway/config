@@ -1,0 +1,4 @@
+# Sway WM only — chrome/GUI via Noctalia.
+# Do not include /etc/sway/config (Fedora binds $mod+d to rofi).
+include /etc/sway/config.d/*
+include config.d/*.conf
