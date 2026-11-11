@@ -80,6 +80,19 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 
+# Noctalia rewrites these theme files. They are not stowed.
+noctalia_fzf="${XDG_CONFIG_HOME:-$HOME/.config}/fzf/themes/noctalia.sh"
+if [[ -r $noctalia_fzf ]]; then
+  [[ -n ${noctalia_fzf_opts:-} ]] && FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS//$noctalia_fzf_opts/}
+  source "$noctalia_fzf"
+  noctalia_fzf_opts=$fzf_theme_opts
+fi
+unset noctalia_fzf fzf_theme_opts
+
+noctalia_glow="${XDG_CONFIG_HOME:-$HOME/.config}/glow/noctalia.json"
+[[ -r $noctalia_glow ]] && export GLOW_STYLE=$noctalia_glow
+unset noctalia_glow
+
 eval "$(starship init zsh)"
 
 source ~/.zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh

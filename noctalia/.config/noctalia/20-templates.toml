@@ -1,3 +1,19 @@
 [theme.templates]
 enable_builtin_templates = true
 builtin_ids = ["gtk3", "gtk4", "qt", "kcolorscheme", "ghostty", "sway"]
+community_ids = [
+  "antigravity",
+  "opencode",
+  "brave",
+  "brave-origin",
+  "chromium-based",
+  "libreoffice",
+  "fastfetch",
+  "papirus-icons",
+  "bat",
+  "fzf",
+  "glow",
+  "herdr",
+  "lazydocker",
+  "starship",
+]

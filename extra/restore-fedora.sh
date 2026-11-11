@@ -373,13 +373,13 @@ step_github_cli() {
   gh --version
 }
 
-step_tela_icons() {
-  bash "$DOTFILES_DIR/extra/install-tela-icons.sh"
-  gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark' 2>/dev/null || true
+step_papirus_icons() {
+  sudo dnf install -y papirus-icon-theme
+  gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' 2>/dev/null || true
   if need_cmd kwriteconfig6; then
-    kwriteconfig6 --file kdeglobals --group Icons --key Theme Tela-dark
+    kwriteconfig6 --file kdeglobals --group Icons --key Theme Papirus-Dark
   elif need_cmd kwriteconfig5; then
-    kwriteconfig5 --file kdeglobals --group Icons --key Theme Tela-dark
+    kwriteconfig5 --file kdeglobals --group Icons --key Theme Papirus-Dark
   fi
 }
 
@@ -465,7 +465,7 @@ main() {
   run_step "Install Cursor CLI" step_cursor_cli
   run_step "Install Flatpak apps (OBS, OnlyOffice, Resources)" step_flatpaks
   run_step "Install GitHub CLI" step_github_cli
-  run_step "Install Tela icon theme (user)" step_tela_icons
+  run_step "Install Papirus icon theme" step_papirus_icons
   run_step "Stow packages + validate sway" step_dotfiles
 
   restore_zshrc_if_clobbered
