@@ -95,9 +95,8 @@ step_core_packages() {
     python3-pip \
     sway sway-systemd xdg-user-dirs \
     noctalia \
-    dolphin \
+    dolphin kate \
     gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb libmtp \
-    gnome-text-editor \
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
     playerctl \
@@ -152,8 +151,6 @@ step_noctalia() {
   noctalia --version 2>/dev/null || ok "noctalia installed"
 }
 
-# Greeter via Terra (not in Fedora default repos yet). Safe cutover is manual —
-# this step only installs packages; enabling greetd is opt-in below.
 step_noctalia_greeter_pkgs() {
   if rpm -q terra-release >/dev/null 2>&1; then
     ok "terra-release already installed"
@@ -167,7 +164,6 @@ step_noctalia_greeter_pkgs() {
     || { err "noctalia-greeter-session missing after install"; return 1; }
 }
 
-# Does not disable your current DM unless SWAYDOTS_ENABLE_GREETD=1.
 step_greetd_cutover() {
   if [[ "${SWAYDOTS_ENABLE_GREETD:-0}" != "1" ]]; then
     warn "skip greetd cutover (set SWAYDOTS_ENABLE_GREETD=1 to enable)"
@@ -358,10 +354,14 @@ step_dotfiles() {
     mv "$HOME/.zshrc" "$HOME/.zshrc.pre-restore"
   fi
 
-  # Stow packages that exist today; grow the list as packages are added.
+  if [[ -e "$HOME/.config/mimeapps.list" && ! -L "$HOME/.config/mimeapps.list" ]]; then
+    warn "moving real mimeapps.list aside so stow can link"
+    mv "$HOME/.config/mimeapps.list" "$HOME/.config/mimeapps.list.pre-restore"
+  fi
+
   local pkgs=()
   local p
-  for p in sway ghostty zsh starship fonts git code cursor xdg; do
+  for p in sway xdg ghostty zsh starship fonts git code cursor; do
     [[ -d "$DOTFILES_DIR/$p" ]] && pkgs+=("$p")
   done
   ((${#pkgs[@]})) || { err "no stow packages found under $DOTFILES_DIR"; return 1; }
@@ -434,9 +434,11 @@ main() {
   if need_cmd gh; then
     if gh auth status -h github.com >/dev/null 2>&1; then
       ok "gh already logged in"
-    else
+    elif [[ "${SWAYDOTS_GH_LOGIN:-0}" == "1" ]]; then
       log "GitHub CLI login (post-success)"
       gh auth login
+    else
+      warn "gh not logged in (set SWAYDOTS_GH_LOGIN=1 to run gh auth login)"
     fi
   fi
 }
