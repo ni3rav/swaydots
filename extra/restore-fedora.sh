@@ -100,8 +100,7 @@ step_core_packages() {
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
     playerctl \
-    gnome-control-center gnome-system-monitor \
-    gnome-clocks snapshot \
+    plasma-systemsettings plasma-systemmonitor kclock kamoso \
     xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
     jq \
     openssh-clients \
