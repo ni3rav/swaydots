@@ -382,6 +382,14 @@ step_papirus_icons() {
   fi
 }
 
+step_firefox_theme() {
+  need_cmd noctalia || { err "noctalia missing"; return 1; }
+  noctalia firefox-theme install
+  sudo mkdir -p /etc/firefox/policies
+  sudo cp "$DOTFILES_DIR/extra/firefox-policies.json" /etc/firefox/policies/policies.json
+  ok "Pywalfox host installed; Firefox force-installs the extension on next start"
+}
+
 step_dotfiles() {
   [[ -d "$DOTFILES_DIR" ]] || { err "DOTFILES_DIR missing: $DOTFILES_DIR"; return 1; }
   cd "$DOTFILES_DIR"
@@ -465,6 +473,7 @@ main() {
   run_step "Install Flatpak apps (OBS, OnlyOffice, Resources)" step_flatpaks
   run_step "Install GitHub CLI" step_github_cli
   run_step "Install Papirus icon theme" step_papirus_icons
+  run_step "Theme Firefox with Pywalfox" step_firefox_theme
   run_step "Stow packages + validate sway" step_dotfiles
 
   restore_zshrc_if_clobbered

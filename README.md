@@ -36,8 +36,9 @@ Enabled templates:
 | opencode | `theme = matugen`. The theme JSON is generated. |
 | lazydocker, antigravity | Hooks write their own configs. Those files are not stowed. |
 | libreoffice, brave, brave-origin, chromium-based | Enabled. The hooks need the app installed (and a browser profile, or Chromium's one-time policy setup) before they can write. |
+| pywalfox | Firefox follows the palette. Noctalia is the native host. The extension is force-installed on the next Firefox start. |
 
-`extra/restore-fedora.sh` installs fastfetch, Papirus, and the Cursor agent CLI (`agent` on `~/.local/bin`), stows the packages above, then runs `noctalia msg templates-apply`. Super+E opens Noctalia settings. Super+1 through Super+9 switch workspaces, and Super+Shift+1 through Super+Shift+9 move the focused window. The lock screen fades in over 200 ms.
+`extra/restore-fedora.sh` installs fastfetch, Papirus, and the Cursor agent CLI (`agent` on `~/.local/bin`), installs the Pywalfox host, stows the packages above, then runs `noctalia msg templates-apply`. Super+E opens Noctalia settings. Super+1 through Super+9 switch workspaces, and Super+Shift+1 through Super+Shift+9 move the focused window. The lock screen fades in over 200 ms.
 
 ```bash
 git clone --recurse-submodules <repo-url> ~/swaydots

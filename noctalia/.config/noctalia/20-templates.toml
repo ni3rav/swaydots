@@ -16,4 +16,5 @@ community_ids = [
   "herdr",
   "lazydocker",
   "starship",
+  "pywalfox",
 ]
