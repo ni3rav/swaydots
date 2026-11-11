@@ -150,6 +150,14 @@ step_noctalia() {
   noctalia --version 2>/dev/null || ok "noctalia installed"
 }
 
+step_notifications_noctalia() {
+  sudo dnf remove -y dunst 2>/dev/null || true
+  systemctl --user stop dunst.service 2>/dev/null || true
+  systemctl --user mask dunst.service 2>/dev/null || true
+  systemctl --user daemon-reload 2>/dev/null || true
+  ok "dunst masked; Noctalia owns notifications"
+}
+
 step_noctalia_greeter_pkgs() {
   if rpm -q terra-release >/dev/null 2>&1; then
     ok "terra-release already installed"
@@ -396,6 +404,7 @@ main() {
   run_step "Upgrade system packages" step_dnf_upgrade
   run_step "Install core packages (sway + noctalia)" step_core_packages
   run_step "Install Noctalia (ensure)" step_noctalia
+  run_step "Hand notifications to Noctalia" step_notifications_noctalia
   run_step "Install Ghostty (COPR)" step_ghostty
   run_step "Install Noctalia Greeter pkgs (Terra)" step_noctalia_greeter_pkgs
   run_step "Optional greetd cutover" step_greetd_cutover

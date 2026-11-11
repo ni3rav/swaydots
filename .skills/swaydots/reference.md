@@ -28,6 +28,7 @@
 - Greeter: Terra → `noctalia-greeter`; cutover only with `SWAYDOTS_ENABLE_GREETD=1`.
 - Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
 - Desktop apps lean KDE/Qt: Dolphin, Kate, `plasma-systemsettings`, `plasma-systemmonitor`, `kclock`, `kamoso`.
+- Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst` (`systemctl --user mask dunst.service`).
 
 ## Stow
 
