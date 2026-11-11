@@ -12,6 +12,7 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off",
   },
+  "python.defaultInterpreterPath": "C:\\Users\\mahet\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
   "git.openRepositoryInParentFolders": "always",
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -166,6 +167,5 @@
   "go.toolsManagement.autoUpdate": true,
   "python.analysis.typeCheckingMode": "standard",
   "network.meteredConnection": "off",
-  "workbench.preferredDarkColorTheme": "Tokyo Night",
   "window.menuBarVisibility": "compact",
 }
