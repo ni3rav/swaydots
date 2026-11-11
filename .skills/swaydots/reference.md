@@ -18,8 +18,8 @@
 - Caps→Esc via `input type:keyboard { xkb_options caps:escape }`.
 - Apps: Ghostty (`$mod+Return`), Dolphin (`$mod+f`), Firefox (`$mod+b`).
 - Noctalia IPC via `$ipc` (`noctalia msg`): launcher, clipboard, settings, control center (`$mod+o`), media, screenshots, lock.
-- `$mod+period` → launcher (emoji slot).
-- Maximize / fullscreen scripts under `scripts/`.
+- `$mod+period` → launcher `/emo` (emoji).
+- Maximize (`$mod+Shift+f`): float to workspace size, bar stays. Fullscreen (`$alt+Shift+f` / `$mod+Control+f`): true output fullscreen.
 
 ## Noctalia
 
