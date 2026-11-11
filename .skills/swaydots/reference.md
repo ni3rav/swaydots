@@ -14,8 +14,8 @@
 ## Sway
 
 - Includes `/etc/sway/config.d/*` (Fedora `sway-systemd`) then `config.d/*.conf`.
-- `$mod+d` hides windows (`toggle-windows.sh`); `$mod+Shift+d` hides the focused window. Press again to restore.
-- Caps→Esc via `input type:keyboard { xkb_options caps:escape }`.
+- Workspaces 1–9 stay on `eDP-1`. `$mod+1`…`$mod+9` switch; `$mod+Shift+1`…`$mod+Shift+9` move the focused window.
+- Caps→Esc via `input type:keyboard { xkb_options caps:escape }`. Num Lock stays on (`xkb_numlock enabled`).
 - Apps: Ghostty (`$mod+Return`), Dolphin (`$mod+f`), Firefox (`$mod+b`).
 - Noctalia IPC via `$ipc` (`noctalia msg`): launcher, clipboard, settings, control center (`$mod+o`), media, screenshots, lock.
 - `$mod+period` → launcher `/emo` (emoji).
