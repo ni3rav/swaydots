@@ -1,3 +1,5 @@
+# Tokyo-Night bar. Icon-only status cluster; compact alt-tab.
+
 [theme]
 mode = "dark"
 source = "builtin"
@@ -9,85 +11,127 @@ order = ["default"]
 [bar.default]
 enabled = true
 position = "top"
-thickness = 34
-padding = 14
-widget_spacing = 6
+thickness = 40
+padding = 16
+widget_spacing = 10
 scale = 1.0
 font_scale = 1.0
 font_weight = 500
-background_opacity = 1.0
-radius = 12
-radius_top_left = 12
-radius_top_right = 12
-radius_bottom_left = 12
-radius_bottom_right = 12
+background_opacity = 0.9
+radius = 0
+radius_top_left = 0
+radius_top_right = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
 margin_edge = 0
-margin_ends = 100
+margin_ends = 0
 margin_opposite_edge = 0
 reserve_space = true
 auto_hide = false
 smart_auto_hide = false
 layer = "top"
-shadow = true
+shadow = false
 capsule = false
-concave_edge_corners = true
+concave_edge_corners = false
 hover_highlight = true
 show_tooltip = true
 border_width = 0
-start = ["launcher", "wallpaper", "workspaces"]
+start = ["workspaces"]
 center = ["clock"]
 end = [
-  "media",
-  "tray",
-  "notifications",
-  "clipboard",
+  "battery",
+  "gap-a",
+  "brightness",
+  "volume",
+  "gap-b",
+  "power-profile",
+  "gap-c",
   "network",
   "bluetooth",
-  "volume",
-  "brightness",
-  "battery",
-  "control-center",
-  "session",
+  "gap-d",
+  "music",
 ]
 
 [widget.workspaces]
 type = "workspaces"
-style = "regular"
+style = "minimal"
 show_labels = true
 show_icons = false
 label_source = "id"
-hide_when_empty = false
+hide_when_empty = true
+labels_only_when_occupied = false
+focused_color = "#c0caf5"
+occupied_color = "#565f89"
+empty_color = "#414868"
+urgent_color = "#f7768e"
+change_color_on_hover = false
 
 [widget.clock]
 type = "clock"
 format = "{:%a %b %-d, %H:%M}"
+anchor = true
+font_family = "JetBrainsMono Nerd Font"
+font_scale = 1.12
+font_weight = 600
+
+[widget.gap-a]
+type = "spacer"
+length = 16
+
+[widget.gap-b]
+type = "spacer"
+length = 16
+
+[widget.gap-c]
+type = "spacer"
+length = 16
+
+[widget.gap-d]
+type = "spacer"
+length = 16
+
+[widget.brightness]
+type = "brightness"
+show_label = false
+scale = 1.15
 
 [widget.volume]
 type = "volume"
 device = "output"
 show_label = false
-
-[widget.network]
-type = "network"
-show_label = false
-
-[widget.bluetooth]
-type = "bluetooth"
-show_label = false
+scale = 1.15
 
 [widget.battery]
 type = "battery"
 display_mode = "glyph"
 show_label = false
+scale = 1.15
 
-[widget.brightness]
-type = "brightness"
+[widget."power-profile"]
+type = "power_profile"
+scale = 1.15
+
+[widget.network]
+type = "network"
 show_label = false
+scale = 1.15
 
-[widget.tray]
-type = "tray"
-drawer = true
-hide_passive = true
+[widget.bluetooth]
+type = "bluetooth"
+show_label = false
+scale = 1.15
+
+[widget.music]
+type = "custom_button"
+glyph = "music"
+scale = 1.15
+
+[widget.music.actions]
+left = "panel-toggle control-center media"
+right = "media toggle"
+middle = "none"
+scroll_up = "media next"
+scroll_down = "media previous"
 
 [shell.panel]
 launcher_placement = "floating"
@@ -102,3 +146,17 @@ wallpaper_placement = "attached"
 open_near_click_wallpaper = false
 session_placement = "attached"
 open_near_click_session = false
+
+[shell.window_switcher]
+style = "compact"
+mru = false
+show_app_icon = true
+show_caption = true
+show_count = true
+current_workspace_only = false
+show_all_outputs = true
+
+# No HUD popup when track changes
+[osd.kinds]
+media = false
+

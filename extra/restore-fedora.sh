@@ -95,7 +95,7 @@ step_core_packages() {
     python3-pip \
     sway sway-systemd xdg-user-dirs \
     noctalia \
-    dolphin kate qt6ct \
+    dolphin kate qt6ct kio-extras \
     gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb libmtp \
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
@@ -372,6 +372,16 @@ step_github_cli() {
   gh --version
 }
 
+step_tela_icons() {
+  bash "$DOTFILES_DIR/extra/install-tela-icons.sh"
+  gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark' 2>/dev/null || true
+  if need_cmd kwriteconfig6; then
+    kwriteconfig6 --file kdeglobals --group Icons --key Theme Tela-dark
+  elif need_cmd kwriteconfig5; then
+    kwriteconfig5 --file kdeglobals --group Icons --key Theme Tela-dark
+  fi
+}
+
 step_dotfiles() {
   [[ -d "$DOTFILES_DIR" ]] || { err "DOTFILES_DIR missing: $DOTFILES_DIR"; return 1; }
   cd "$DOTFILES_DIR"
@@ -448,6 +458,7 @@ main() {
   run_step "Install Cursor CLI" step_cursor_cli
   run_step "Install Flatpak apps (OBS, OnlyOffice, Resources)" step_flatpaks
   run_step "Install GitHub CLI" step_github_cli
+  run_step "Install Tela icon theme (user)" step_tela_icons
   run_step "Stow packages + validate sway" step_dotfiles
 
   restore_zshrc_if_clobbered
