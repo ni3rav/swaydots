@@ -196,6 +196,9 @@ step_noctalia_greeter_pkgs() {
   sudo dnf install -y noctalia-greeter greetd
   need_cmd noctalia-greeter-session \
     || { err "noctalia-greeter-session missing after install"; return 1; }
+  sudo mkdir -p /etc/polkit-1/rules.d
+  sudo cp "$DOTFILES_DIR/extra/50-noctalia-greeter.rules" /etc/polkit-1/rules.d/50-noctalia-greeter.rules
+  ok "greeter palette sync allowed for the active local user"
 }
 
 step_greetd_cutover() {

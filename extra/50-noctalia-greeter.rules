@@ -1,0 +1,7 @@
+// The person at the keyboard may sync the login screen with the desktop palette.
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.noctalia.greeter.sync-appearance" &&
+        subject.local && subject.active) {
+        return polkit.Result.YES;
+    }
+});
