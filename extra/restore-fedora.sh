@@ -151,6 +151,17 @@ step_noctalia() {
   noctalia --version 2>/dev/null || ok "noctalia installed"
 }
 
+step_kdeconnect() {
+  sudo dnf install -y kde-connect
+  if systemctl is-active --quiet firewalld; then
+    sudo firewall-cmd --permanent --add-service=kdeconnect
+    sudo firewall-cmd --reload
+    ok "firewall allows KDE Connect"
+  else
+    warn "firewalld is inactive; KDE Connect needs tcp/udp 1714-1764"
+  fi
+}
+
 step_notifications_noctalia() {
   sudo dnf remove -y dunst 2>/dev/null || true
   systemctl --user stop dunst.service 2>/dev/null || true
@@ -454,6 +465,7 @@ main() {
   run_step "Configure /etc/dnf/dnf.conf" step_dnf_config
   run_step "Upgrade system packages" step_dnf_upgrade
   run_step "Install core packages (sway + noctalia)" step_core_packages
+  run_step "Install KDE Connect" step_kdeconnect
   run_step "Purge Sway-spin leftovers (rofi/Thunar/foot/…)" step_purge_stale
   run_step "Install Noctalia (ensure)" step_noctalia
   run_step "Hand notifications to Noctalia" step_notifications_noctalia

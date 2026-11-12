@@ -27,7 +27,7 @@
 - Greeter: Terra → `noctalia-greeter`; cutover with `SWAYDOTS_ENABLE_GREETD=1` then **reboot**. Fedora uses `user = "greetd"` in `/etc/greetd/config.toml`. `shell.greeter_sync.auto_sync` is on, and `extra/50-noctalia-greeter.rules` lets the active user sync the palette.
 - Bar edits apply immediately. `bash extra/sync-noctalia-bar.sh` copies the live bar into `10-bar.toml` when the repo should match.
 - Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
-- Desktop apps that stay: Dolphin, Kate, and Ark. Clock is GNOME Clocks (`gnome-clocks`); camera is Snapshot (`snapshot`). System Settings, System Monitor, KClock, and Kamoso are removed; they do not work under Sway.
+- Desktop apps that stay: Dolphin, Kate, and Ark. Clock is GNOME Clocks (`gnome-clocks`); camera is Snapshot (`snapshot`). KDE Connect pairs a phone; the indicator autostarts and the firewall allows `kdeconnect` (tcp/udp 1714-1764). System Settings, System Monitor, KClock, and Kamoso are removed; they do not work under Sway.
 - Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst`.
 - Purge Sway-spin leftovers on restore: Thunar, rofi, foot, xfce4-panel.
 

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=KDE Connect Indicator
+Comment=Show paired devices in the tray
+Exec=kdeconnect-indicator
+Icon=kdeconnect
+Terminal=false
+X-GNOME-Autostart-enabled=true
