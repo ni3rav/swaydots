@@ -1,9 +1,10 @@
-# Tokyo-Night bar. Icon-only status cluster; compact alt-tab.
+# Bar follows the wallpaper palette. Compact alt-tab.
 
 [theme]
 mode = "dark"
-source = "builtin"
+source = "wallpaper"
 builtin = "Tokyo-Night"
+wallpaper_scheme = "m3-monochrome"
 
 [bar]
 order = ["default"]
@@ -12,12 +13,13 @@ order = ["default"]
 enabled = true
 position = "top"
 thickness = 36
-padding = 16
-widget_spacing = 10
+padding = 20
+widget_spacing = 20
 scale = 1.0
+font_family = "JetBrainsMono NF"
 font_scale = 1.0
 font_weight = 500
-background_opacity = 1.0
+background_opacity = 0.85
 compositor_blur = false
 radius = 0
 radius_top_left = 0
@@ -27,6 +29,7 @@ radius_bottom_right = 0
 margin_edge = 0
 margin_ends = 0
 margin_opposite_edge = 0
+panel_overlap = 0
 reserve_space = true
 auto_hide = false
 smart_auto_hide = false
@@ -40,27 +43,23 @@ border_width = 0
 start = ["workspaces"]
 center = ["clock"]
 end = [
+  "notifications",
   "battery",
-  "gap-a",
   "brightness",
   "volume",
-  "gap-b",
-  "power-profile",
-  "gap-c",
   "network",
   "bluetooth",
-  "gap-d",
-  "music",
+  "media",
 ]
 
 [widget.workspaces]
 type = "workspaces"
 style = "regular"
-font_scale = 1.2
+font_scale = 1.0
 show_labels = true
 show_icons = false
 label_source = "id"
-hide_when_empty = true
+hide_when_empty = false
 labels_only_when_occupied = false
 focused_color = "#c0caf5"
 occupied_color = "#565f89"
@@ -73,67 +72,45 @@ type = "clock"
 format = "{:%a %b %-d, %H:%M}"
 anchor = true
 font_family = "JetBrainsMono Nerd Font"
-font_scale = 1.12
+font_scale = 1.05
 font_weight = 600
-
-[widget.gap-a]
-type = "spacer"
-length = 16
-
-[widget.gap-b]
-type = "spacer"
-length = 16
-
-[widget.gap-c]
-type = "spacer"
-length = 16
-
-[widget.gap-d]
-type = "spacer"
-length = 16
 
 [widget.brightness]
 type = "brightness"
 show_label = false
-scale = 1.15
+scale = 1.2
 
 [widget.volume]
 type = "volume"
 device = "output"
 show_label = false
-scale = 1.15
+scale = 1.2
 
 [widget.battery]
 type = "battery"
-display_mode = "glyph"
-show_label = false
-scale = 1.15
-
-[widget."power-profile"]
-type = "power_profile"
-scale = 1.15
+display_mode = "graphic"
+hide_when_full = true
+hide_when_plugged = true
+show_label = true
+scale = 0.8
 
 [widget.network]
 type = "network"
 show_label = false
-scale = 1.15
+scale = 1.2
+vpn_status = "both"
 
 [widget.bluetooth]
 type = "bluetooth"
 show_label = false
 scale = 1.15
 
-[widget.music]
-type = "custom_button"
-glyph = "music"
-scale = 1.15
-
-[widget.music.actions]
-left = "panel-toggle control-center media"
-right = "media toggle"
-middle = "none"
-scroll_up = "media next"
-scroll_down = "media previous"
+[widget.media]
+type = "media"
+album_art_only = true
+art_size = 20
+hide_when_no_media = true
+min_length = 82
 
 [shell.panel]
 launcher_placement = "floating"
