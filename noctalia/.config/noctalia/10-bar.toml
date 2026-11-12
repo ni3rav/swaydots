@@ -10,107 +10,183 @@ wallpaper_scheme = "m3-monochrome"
 order = ["default"]
 
 [bar.default]
+auto_hide = false
+auto_hide_delay_ms = 0
+background_opacity = 0.7
+border = "outline_variant"
+border_width = 0.0
+capsule = false
+capsule_border_width = 1.0
+capsule_fill = "surface_container"
+capsule_opacity = 1.0
+capsule_padding = 6.0
+capsule_thickness = 0.76
+center = [ "notifications", "group:g1", "session" ]
+compositor_blur = false
+concave_edge_corners = false
+contact_shadow = false
 enabled = true
-position = "top"
-thickness = 36
-padding = 20
-widget_spacing = 20
-scale = 1.0
+end = [ "tray", "battery", "group:g3", "group:g4", "media" ]
 font_family = "JetBrainsMono NF"
 font_scale = 1.0
 font_weight = 500
-background_opacity = 0.85
-compositor_blur = false
-radius = 0
-radius_top_left = 0
-radius_top_right = 0
-radius_bottom_left = 0
-radius_bottom_right = 0
+hover_highlight = true
+layer = "top"
 margin_edge = 0
 margin_ends = 0
 margin_opposite_edge = 0
+padding = 20
 panel_overlap = 0
+position = "top"
+radius = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+radius_top_left = 0
+radius_top_right = 0
 reserve_space = true
-auto_hide = false
-smart_auto_hide = false
-layer = "top"
+scale = 1.0
 shadow = false
-capsule = false
-concave_edge_corners = false
-hover_highlight = true
+show_on_workspace_switch = true
 show_tooltip = true
-border_width = 0
-start = ["workspaces"]
-center = ["clock"]
-end = [
-  "notifications",
-  "battery",
-  "brightness",
-  "volume",
-  "network",
-  "bluetooth",
-  "media",
-]
+smart_auto_hide = false
+start = [ "group:g2" ]
+thickness = 36
+widget_spacing = 20
 
-[widget.workspaces]
-type = "workspaces"
-style = "regular"
-font_scale = 1.0
-show_labels = true
-show_icons = false
-label_source = "id"
-hide_when_empty = false
-labels_only_when_occupied = false
-focused_color = "#c0caf5"
-occupied_color = "#565f89"
-empty_color = "#414868"
-urgent_color = "#f7768e"
-change_color_on_hover = false
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border_width = 1.0
+enabled = true
+fill = "surface_container"
+id = "g1"
+members = [ "clock", "separater-1", "weather" ]
+opacity = 0.5
+padding = 8.0
+radius = 8.0
+widget_spacing = 6
 
-[widget.clock]
-type = "clock"
-format = "{:%a %b %-d, %H:%M}"
-anchor = true
-font_family = "JetBrainsMono Nerd Font"
-font_scale = 1.05
-font_weight = 600
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border_width = 1.0
+enabled = true
+fill = "surface_container"
+id = "g2"
+members = [ "workspaces", "spacer_2" ]
+opacity = 1.0
+padding = 10.0
+radius = 8.0
 
-[widget.brightness]
-type = "brightness"
-show_label = false
-scale = 1.2
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border_width = 1.0
+enabled = true
+fill = "surface_container"
+id = "g3"
+members = [ "sysmon", "power_profile" ]
+opacity = 1.0
+padding = 8.0
+radius = 8.0
+widget_spacing = 16
 
-[widget.volume]
-type = "volume"
-device = "output"
-show_label = false
-scale = 1.2
+[[bar.default.capsule_group]]
+accordion = false
+accordion_direction = "end"
+border_width = 1.0
+enabled = true
+fill = "surface_container"
+id = "g4"
+members = [ "brightness", "volume", "network", "bluetooth" ]
+opacity = 1.0
+padding = 8.0
+radius = 8.0
+widget_spacing = 16
+
+[widget.tray]
+drawer = true
+match_adjacent_spacing = true
+type = "tray"
 
 [widget.battery]
-type = "battery"
 display_mode = "graphic"
-hide_when_full = true
-hide_when_plugged = true
+hide_when_full = false
+hide_when_plugged = false
+scale = 1.0
 show_label = true
-scale = 0.8
-
-[widget.network]
-type = "network"
-show_label = false
-scale = 1.2
-vpn_status = "both"
-
-[widget.bluetooth]
-type = "bluetooth"
-show_label = false
-scale = 1.15
+type = "battery"
 
 [widget.media]
-type = "media"
 album_art_only = true
 art_size = 20
 hide_when_no_media = true
+max_length = 220.0
 min_length = 82
+title_scroll = "none"
+type = "media"
+
+[widget.clock]
+anchor = false
+font_family = "JetBrainsMono Nerd Font"
+font_scale = 1.0
+font_weight = 400
+format = "%H:%M"
+type = "clock"
+
+[widget.separater-1]
+glyph = "grip-vertical"
+interactive = false
+show_tooltip = false
+type = "custom_button"
+
+[widget.weather]
+font_family = "JetBrainsMono NF"
+font_weight = 600
+show_condition = false
+type = "weather"
+
+[widget.workspaces]
+active_pill_size = 1.0
+anchor = true
+change_color_on_hover = false
+empty_color = "secondary_container"
+focused_color = "primary"
+font_scale = 1.0
+hide_when_empty = false
+label_source = "id"
+labels_only_when_occupied = false
+occupied_color = "secondary_container"
+show_icons = false
+show_labels = true
+style = "regular"
+type = "workspaces"
+urgent_color = "error"
+
+[widget.spacer_2]
+type = "spacer"
+
+[widget.brightness]
+scale = 1.2
+show_label = false
+type = "brightness"
+
+[widget.volume]
+device = "output"
+scale = 1.2
+show_label = false
+type = "volume"
+
+[widget.network]
+scale = 1.2
+show_label = false
+type = "network"
+vpn_status = "both"
+
+[widget.bluetooth]
+scale = 1.15
+show_label = false
+type = "bluetooth"
 
 [shell.panel]
 launcher_placement = "floating"

@@ -24,9 +24,10 @@
 
 - Autostart: `exec noctalia` in `10-autostart.conf`.
 - Install: `sudo dnf install noctalia` (Fedora 44+).
-- Greeter: Terra → `noctalia-greeter`; cutover with `SWAYDOTS_ENABLE_GREETD=1` then **reboot**. Fedora uses `user = "greetd"` in `/etc/greetd/config.toml`. `extra/50-noctalia-greeter.rules` lets the active user sync the palette without a password prompt.
+- Greeter: Terra → `noctalia-greeter`; cutover with `SWAYDOTS_ENABLE_GREETD=1` then **reboot**. Fedora uses `user = "greetd"` in `/etc/greetd/config.toml`. `shell.greeter_sync.auto_sync` is on, and `extra/50-noctalia-greeter.rules` lets the active user sync the palette.
+- Bar edits apply immediately. `bash extra/sync-noctalia-bar.sh` copies the live bar into `10-bar.toml` when the repo should match.
 - Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
-- Desktop apps lean KDE/Qt: Dolphin, Kate, `plasma-systemsettings`, `plasma-systemmonitor`, `kclock`, `kamoso`.
+- Desktop apps that stay: Dolphin, Kate, and Ark. Clock is GNOME Clocks (`gnome-clocks`); camera is Snapshot (`snapshot`). System Settings, System Monitor, KClock, and Kamoso are removed; they do not work under Sway.
 - Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst`.
 - Purge Sway-spin leftovers on restore: Thunar, rofi, foot, xfce4-panel.
 

@@ -19,6 +19,12 @@ rm -f ~/.zshrc.local
 cd ~/swaydots && stow -v --no-folding zsh
 ```
 
+## Save the Noctalia bar
+
+```bash
+bash ~/swaydots/extra/sync-noctalia-bar.sh
+```
+
 ## Restore / validate
 
 ```bash

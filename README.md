@@ -38,7 +38,7 @@ Enabled templates:
 | libreoffice, brave, brave-origin, chromium-based | Enabled. The hooks need the app installed (and a browser profile, or Chromium's one-time policy setup) before they can write. |
 | pywalfox | Firefox follows the palette. Noctalia is the native host. `bash extra/firefox-theme.sh` installs the host and the extension policy; restart Firefox after. |
 
-`extra/restore-fedora.sh` installs fastfetch, Papirus, and the Cursor agent CLI (`agent` on `~/.local/bin`), installs the Pywalfox host, stows the packages above, then runs `noctalia msg templates-apply`. Super+E opens Noctalia settings. Super+1 through Super+9 switch workspaces, and Super+Shift+1 through Super+Shift+9 move the focused window. The lock screen fades in over 200 ms.
+`extra/restore-fedora.sh` installs fastfetch, Papirus, and the Cursor agent CLI (`agent` on `~/.local/bin`), installs the Pywalfox host, stows the packages above, then runs `noctalia msg templates-apply`. Desktop apps are Dolphin, Kate, Ark, GNOME Clocks, and Snapshot. Super+E opens Noctalia settings. Super+1 through Super+9 switch workspaces, and Super+Shift+1 through Super+Shift+9 move the focused window. The lock screen fades in over 200 ms. Bar edits and the login-screen palette apply on their own. `bash extra/sync-noctalia-bar.sh` copies the live bar into the stowed config when the repo should match.
 
 ```bash
 git clone --recurse-submodules <repo-url> ~/swaydots

@@ -96,12 +96,12 @@ step_core_packages() {
     sway sway-systemd xdg-user-dirs \
     noctalia \
     dolphin kate qt6ct kio-extras ark \
+    gnome-clocks snapshot \
     gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb libmtp \
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
     playerctl \
     fastfetch \
-    plasma-systemsettings plasma-systemmonitor kclock kamoso \
     xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
     jq \
     openssh-clients \
@@ -165,6 +165,7 @@ step_purge_stale() {
     rofi rofi-themes \
     foot \
     xfce4-panel \
+    plasma-systemsettings plasma-systemmonitor kclock kamoso \
     mousepad xfce4-terminal \
     dmenu bemenu wofi \
     2>/dev/null || true
