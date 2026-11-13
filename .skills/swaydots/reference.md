@@ -26,6 +26,7 @@
 - Install: `sudo dnf install noctalia` (Fedora 44+).
 - Greeter: Terra → `noctalia-greeter`; cutover with `SWAYDOTS_ENABLE_GREETD=1` then **reboot**. Fedora uses `user = "greetd"` in `/etc/greetd/config.toml`. `shell.greeter_sync.auto_sync` is on, and `extra/50-noctalia-greeter.rules` lets the active user sync the palette.
 - Bar edits apply immediately. `bash extra/sync-noctalia-bar.sh` copies the live bar into `10-bar.toml` when the repo should match.
+- Plugin `micahg/nwg-displays` is enabled. The bar lists `laptop`, `extend`, and `clone`. Extend places whatever monitor is plugged in to the right at its own resolution. Clone shows a fullscreen copy of the built-in screen on it (`wl-mirror`). `/usr/local/bin/nwg-displays-apply` runs `extra/display-layout.sh` for those three names.
 - Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
 - Desktop apps that stay: Dolphin, Kate, and Ark. Clock is GNOME Clocks (`gnome-clocks`); camera is Snapshot (`snapshot`). KDE Connect pairs a phone; the indicator autostarts and the firewall allows `kdeconnect` (tcp/udp 1714-1764). System Settings, System Monitor, KClock, and Kamoso are removed; they do not work under Sway.
 - Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst`.
@@ -36,7 +37,7 @@
 ```bash
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg noctalia zsh starship ghostty fonts git code cursor fastfetch herdr opencode
+stow -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git code cursor fastfetch herdr opencode
 ```
 
 Never stow `extra/`, `.skills/`, `.git`, `.cursor`. Restore: `bash extra/restore-fedora.sh`.

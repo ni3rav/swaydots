@@ -162,6 +162,16 @@ step_kdeconnect() {
   fi
 }
 
+step_nwg_displays() {
+  sudo dnf install -y nwg-displays wl-mirror
+  sudo install -m 755 "$DOTFILES_DIR/extra/nwg-displays-apply" /usr/local/bin/nwg-displays-apply
+  if need_cmd noctalia && noctalia msg plugins enable micahg/nwg-displays >/dev/null 2>&1; then
+    ok "nwg-displays plugin enabled"
+  else
+    warn "nwg-displays plugin enables once Noctalia is up"
+  fi
+}
+
 step_notifications_noctalia() {
   sudo dnf remove -y dunst 2>/dev/null || true
   systemctl --user stop dunst.service 2>/dev/null || true
@@ -424,7 +434,7 @@ step_dotfiles() {
 
   local pkgs=()
   local p
-  for p in sway xdg noctalia ghostty zsh starship fonts git code cursor fastfetch herdr opencode; do
+  for p in sway xdg noctalia nwg-displays ghostty zsh starship fonts git code cursor fastfetch herdr opencode; do
     [[ -d "$DOTFILES_DIR/$p" ]] && pkgs+=("$p")
   done
   ((${#pkgs[@]})) || { err "no stow packages found under $DOTFILES_DIR"; return 1; }
@@ -466,6 +476,7 @@ main() {
   run_step "Upgrade system packages" step_dnf_upgrade
   run_step "Install core packages (sway + noctalia)" step_core_packages
   run_step "Install KDE Connect" step_kdeconnect
+  run_step "Install nwg-displays" step_nwg_displays
   run_step "Purge Sway-spin leftovers (rofi/Thunar/foot/…)" step_purge_stale
   run_step "Install Noctalia (ensure)" step_noctalia
   run_step "Hand notifications to Noctalia" step_notifications_noctalia

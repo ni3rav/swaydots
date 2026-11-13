@@ -12,7 +12,7 @@ order = ["default"]
 [bar.default]
 auto_hide = false
 auto_hide_delay_ms = 0
-background_opacity = 0.7
+background_opacity = 0.95
 border = "outline_variant"
 border_width = 0.0
 capsule = false
@@ -21,12 +21,12 @@ capsule_fill = "surface_container"
 capsule_opacity = 1.0
 capsule_padding = 6.0
 capsule_thickness = 0.76
-center = [ "notifications", "group:g1", "session" ]
+center = [ "clock" ]
 compositor_blur = false
 concave_edge_corners = false
 contact_shadow = false
 enabled = true
-end = [ "tray", "battery", "group:g3", "group:g4", "media" ]
+end = [ "tray", "notifications", "battery", "sysmon", "power_profile", "widget", "brightness", "volume", "network", "bluetooth", "media", "session" ]
 font_family = "JetBrainsMono NF"
 font_scale = 1.0
 font_weight = 500
@@ -49,102 +49,9 @@ shadow = false
 show_on_workspace_switch = true
 show_tooltip = true
 smart_auto_hide = false
-start = [ "group:g2" ]
-thickness = 36
+start = [ "workspaces" ]
+thickness = 30
 widget_spacing = 20
-
-[[bar.default.capsule_group]]
-accordion = false
-accordion_direction = "end"
-border_width = 1.0
-enabled = true
-fill = "surface_container"
-id = "g1"
-members = [ "clock", "separater-1", "weather" ]
-opacity = 0.5
-padding = 8.0
-radius = 8.0
-widget_spacing = 6
-
-[[bar.default.capsule_group]]
-accordion = false
-accordion_direction = "end"
-border_width = 1.0
-enabled = true
-fill = "surface_container"
-id = "g2"
-members = [ "workspaces", "spacer_2" ]
-opacity = 1.0
-padding = 10.0
-radius = 8.0
-
-[[bar.default.capsule_group]]
-accordion = false
-accordion_direction = "end"
-border_width = 1.0
-enabled = true
-fill = "surface_container"
-id = "g3"
-members = [ "sysmon", "power_profile" ]
-opacity = 1.0
-padding = 8.0
-radius = 8.0
-widget_spacing = 16
-
-[[bar.default.capsule_group]]
-accordion = false
-accordion_direction = "end"
-border_width = 1.0
-enabled = true
-fill = "surface_container"
-id = "g4"
-members = [ "brightness", "volume", "network", "bluetooth" ]
-opacity = 1.0
-padding = 8.0
-radius = 8.0
-widget_spacing = 16
-
-[widget.tray]
-drawer = true
-match_adjacent_spacing = true
-type = "tray"
-
-[widget.battery]
-display_mode = "graphic"
-hide_when_full = false
-hide_when_plugged = false
-scale = 1.0
-show_label = true
-type = "battery"
-
-[widget.media]
-album_art_only = true
-art_size = 20
-hide_when_no_media = true
-max_length = 220.0
-min_length = 82
-title_scroll = "none"
-type = "media"
-
-[widget.clock]
-anchor = false
-font_family = "JetBrainsMono Nerd Font"
-font_scale = 1.0
-font_weight = 400
-format = "%H:%M"
-type = "clock"
-
-[widget.separater-1]
-glyph = "grip-vertical"
-interactive = false
-show_tooltip = false
-type = "custom_button"
-
-[widget.weather]
-font_family = "JetBrainsMono NF"
-font_weight = 600
-show_condition = false
-type = "weather"
 
 [widget.workspaces]
 active_pill_size = 1.0
@@ -163,8 +70,29 @@ style = "regular"
 type = "workspaces"
 urgent_color = "error"
 
-[widget.spacer_2]
-type = "spacer"
+[widget.clock]
+anchor = false
+font_family = "JetBrainsMono Nerd Font"
+font_scale = 1.0
+font_weight = 400
+format = "%b %d %H:%M"
+type = "clock"
+
+[widget.tray]
+drawer = true
+match_adjacent_spacing = true
+type = "tray"
+
+[widget.battery]
+display_mode = "graphic"
+hide_when_full = false
+hide_when_plugged = false
+scale = 1.0
+show_label = true
+type = "battery"
+
+[widget.widget]
+type = "micahg/nwg-displays:widget"
 
 [widget.brightness]
 scale = 1.2
@@ -187,6 +115,15 @@ vpn_status = "both"
 scale = 1.15
 show_label = false
 type = "bluetooth"
+
+[widget.media]
+album_art_only = true
+art_size = 20
+hide_when_no_media = true
+max_length = 220.0
+min_length = 82
+title_scroll = "none"
+type = "media"
 
 [shell.panel]
 launcher_placement = "floating"

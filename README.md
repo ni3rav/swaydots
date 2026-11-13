@@ -11,6 +11,7 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 | `sway` | `~/.config/sway` — keybinds/WM only; Noctalia for launcher/OSD/bar/lock |
 | `xdg` | mimeapps, portals, `environment.d` + `qt6ct` for Qt theming |
 | `noctalia` | bar + builtin and community theme templates |
+| `nwg-displays` | `~/.config/nwg-displays/profiles` |
 | `zsh` | `~/.zshrc`, `~/.zsh` plugins (submodules) |
 | `starship` | `~/.config/starship.toml` (Noctalia palette block included) |
 | `ghostty` | `~/.config/ghostty/config.ghostty` (`theme = noctalia`) |
@@ -44,7 +45,7 @@ Enabled templates:
 git clone --recurse-submodules <repo-url> ~/swaydots
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg noctalia zsh starship ghostty fonts git code cursor fastfetch herdr opencode
+stow -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git code cursor fastfetch herdr opencode
 fc-cache -fv
 ```
 

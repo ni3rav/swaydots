@@ -30,7 +30,7 @@ bash ~/swaydots/extra/sync-noctalia-bar.sh
 ```bash
 bash ~/swaydots/extra/restore-fedora.sh
 cd ~/swaydots
-stow -n -v --no-folding sway xdg noctalia zsh starship ghostty fonts git code cursor fastfetch herdr opencode
+stow -n -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git code cursor fastfetch herdr opencode
 sway -C -c ~/.config/sway/config
 readlink -f ~/.config/sway/config
 ```
