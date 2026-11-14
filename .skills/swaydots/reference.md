@@ -9,7 +9,7 @@
 | `ghostty` | `~/.config/ghostty/config.ghostty` | TokyoNight + JetBrainsMono NF |
 | `fonts` | fonts + fontconfig | JetBrainsMono NF, Plus Jakarta Sans, Noto Indic |
 | `git` | `~/.gitconfig` | |
-| `code` / `cursor` | User settings/keybindings | `cursor` also stows `~/.cursor/cli-config.json` (no account caches) |
+| `codium` / `cursor` | User settings/keybindings | Default profile is the dev extension list; `jupyter` is the only other profile. Both use the same settings: Dark Modern, hidden activity bar, command center off. New extensions: **Sync Settings: Upload** in that profile (`codium/sync`). `cursor` also stows `~/.cursor/cli-config.json` (no account caches) |
 
 ## Sway
 
@@ -37,7 +37,7 @@
 ```bash
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git code cursor fastfetch herdr opencode
+stow -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git codium cursor fastfetch herdr opencode
 ```
 
 Never stow `extra/`, `.skills/`, `.git`, `.cursor`. Restore: `bash extra/restore-fedora.sh`.

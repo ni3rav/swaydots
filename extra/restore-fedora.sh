@@ -353,23 +353,87 @@ step_opencode() {
   need_cmd opencode && opencode --version || true
 }
 
-step_vscode() {
-  if need_cmd code; then
-    ok "code already installed"
+ensure_codium_profile() {
+  local name="$1"
+  if codium --profile "$name" --list-extensions >/dev/null 2>&1; then
     return 0
   fi
-  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-  printf '%s\n' \
-    '[code]' \
-    'name=Visual Studio Code' \
-    'baseurl=https://packages.microsoft.com/yumrepos/vscode' \
-    'enabled=1' \
-    'autorefresh=1' \
-    'type=rpm-md' \
-    'gpgcheck=1' \
-    'gpgkey=https://packages.microsoft.com/keys/microsoft.asc' \
-    | sudo tee /etc/yum.repos.d/vscode.repo >/dev/null
-  sudo dnf install -y code
+  local seed
+  seed=$(mktemp -d)
+  codium --profile "$name" "$seed" >/dev/null 2>&1 || true
+  sleep 1
+}
+
+install_codium_profile() {
+  local name="$1"
+  local file="$DOTFILES_DIR/codium/sync/profiles/$name/data/extensions.yml"
+  [[ -f "$file" ]] || { warn "codium: no extension list for $name"; return 0; }
+  ensure_codium_profile "$name"
+  local id
+  while read -r id; do
+    [[ -n "$id" ]] || continue
+    codium --profile "$name" --install-extension "$id" \
+      || warn "codium: $name did not install $id"
+  done < <(awk '/^[[:space:]]*- id: / { print $3 }' "$file")
+  python3 - "$name" << 'PY'
+import json, os, sys
+from pathlib import Path
+name = sys.argv[1]
+home = Path.home()
+storage = home / ".config/VSCodium/User/globalStorage/storage.json"
+data = json.loads(storage.read_text())
+loc = ""
+for item in data.get("userDataProfiles", []):
+    if item.get("name") == name:
+        item["useDefaultFlags"] = {
+            "settings": True,
+            "keybindings": True,
+            "tasks": True,
+            "snippets": True,
+        }
+        loc = item["location"]
+if loc:
+    storage.write_text(json.dumps(data, indent=4) + "\n")
+    profile = home / ".config/VSCodium/User/profiles" / loc
+    profile.mkdir(parents=True, exist_ok=True)
+    os.symlink("../../settings.json", profile / "settings.json") if not (profile / "settings.json").exists() else None
+    os.symlink("../../keybindings.json", profile / "keybindings.json") if not (profile / "keybindings.json").exists() else None
+    sync = profile / "globalStorage/zokugun.sync-settings"
+    sync.mkdir(parents=True, exist_ok=True)
+    yml = sync / "settings.yml"
+    if not yml.exists():
+        yml.write_text(
+            'hostname: ""\n'
+            f"profile: {name}\n"
+            "repository:\n"
+            "  type: file\n"
+            "  path: ~/swaydots/codium/sync\n"
+        )
+        os.chmod(yml, 0o600)
+PY
+}
+
+install_codium_default() {
+  local file="$DOTFILES_DIR/codium/sync/profiles/dev/data/extensions.yml"
+  [[ -f "$file" ]] || { warn "codium: no extension list for the default profile"; return 0; }
+  local id
+  while read -r id; do
+    [[ -n "$id" ]] || continue
+    codium --install-extension "$id" \
+      || warn "codium: default profile did not install $id"
+  done < <(awk '/^[[:space:]]*- id: / { print $3 }' "$file")
+}
+
+step_codium() {
+  sudo rm -f /etc/yum.repos.d/vscode.repo
+  if rpm -q code >/dev/null 2>&1; then
+    sudo dnf remove -y code
+  fi
+  sudo dnf install -y codium
+  need_cmd codium
+  codium --install-extension zokugun.sync-settings
+  install_codium_default
+  install_codium_profile jupyter
 }
 
 step_cursor_cli() {
@@ -434,7 +498,7 @@ step_dotfiles() {
 
   local pkgs=()
   local p
-  for p in sway xdg noctalia nwg-displays ghostty zsh starship fonts git code cursor fastfetch herdr opencode; do
+  for p in sway xdg noctalia nwg-displays ghostty zsh starship fonts git codium cursor fastfetch herdr opencode; do
     [[ -d "$DOTFILES_DIR/$p" ]] && pkgs+=("$p")
   done
   ((${#pkgs[@]})) || { err "no stow packages found under $DOTFILES_DIR"; return 1; }
@@ -492,7 +556,7 @@ main() {
   run_step "Install NVM, Node LTS/Current, pnpm" step_nvm_node_pnpm
   run_step "Install uv" step_uv
   run_step "Install OpenCode" step_opencode
-  run_step "Install VS Code" step_vscode
+  run_step "Install VSCodium" step_codium
   run_step "Install Cursor agent CLI" step_cursor_cli
   run_step "Install Flatpak apps (OBS, OnlyOffice, Resources)" step_flatpaks
   run_step "Install GitHub CLI" step_github_cli

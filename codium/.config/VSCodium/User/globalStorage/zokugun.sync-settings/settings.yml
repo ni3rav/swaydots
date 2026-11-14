@@ -1,0 +1,5 @@
+hostname: ""
+profile: dev
+repository:
+  type: file
+  path: ~/swaydots/codium/sync

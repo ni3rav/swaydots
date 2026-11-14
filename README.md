@@ -20,8 +20,10 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 | `opencode` | `~/.config/opencode/opencode.json` (theme `matugen`) |
 | `fonts` | fonts + fontconfig |
 | `git` | `~/.gitconfig` |
-| `code` | VS Code User settings/keybindings |
+| `codium` | VSCodium settings and keybindings. The default profile is the dev extension set; `jupyter` is the other profile |
 | `cursor` | Cursor editor settings, plus `~/.cursor/cli-config.json` for the agent CLI |
+
+Both VSCodium profiles read the same settings and keybindings: Dark Modern, the activity bar hidden, and the command center off. Extension lists are `codium/sync/profiles/dev` and `codium/sync/profiles/jupyter`. After installing an extension, run **Sync Settings: Upload** in that profile.
 
 Thin thread: Sway moves windows; every GUI verb is `noctalia msg …`. Qt apps need `qt6ct` + `QT_QPA_PLATFORMTHEME=qt6ct` (stowed; re-login after first stow).
 
@@ -45,7 +47,7 @@ Enabled templates:
 git clone --recurse-submodules <repo-url> ~/swaydots
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git code cursor fastfetch herdr opencode
+stow -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git codium cursor fastfetch herdr opencode
 fc-cache -fv
 ```
 
