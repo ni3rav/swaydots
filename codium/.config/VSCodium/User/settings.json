@@ -12,7 +12,6 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off",
   },
-  "python.defaultInterpreterPath": "/home/ni3rav/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/bin/python3.12",
   "python-envs.alwaysUseUv": true,
   "git.openRepositoryInParentFolders": "always",
   "[css]": {
@@ -151,7 +150,7 @@
   "@azure.argTenant": "",
   "workbench.editor.empty.hint": "hidden",
   "chat.agentsControl.enabled": false,
-  "workbench.colorTheme": "Dark Modern",
+  "workbench.colorTheme": "Vesper",
   "chat.viewSessions.orientation": "stacked",
   "window.autoDetectColorScheme": false,
   "azureFunctions.showProjectWarning": false,
@@ -168,4 +167,7 @@
   "syncSettings.confirmSync": false,
   "window.commandCenter": false,
   "window.menuBarVisibility": "compact",
+  "workbench.iconTheme": "vs-seti-folder",
+  "workbench.editor.tabActionLocation": "left",
+  "window.density.editorTabHeight": "compact",
 }

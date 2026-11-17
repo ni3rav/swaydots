@@ -4,6 +4,8 @@ enabled:
     uuid: 7a0110bb-231a-4598-aa1b-0769ea46d28b
   - id: esbenp.prettier-vscode
     uuid: 96fa4707-6983-4489-b7c5-d5ffdfdcce90
+  - id: l-igh-t.vscode-theme-seti-folder
+    uuid: 76dbc2b8-5250-4cbc-8605-e0eb560e2ccc
   - id: ms-python.black-formatter
     uuid: 859e640c-c157-47da-8699-9080b81c8371
   - id: ms-python.debugpy
@@ -24,6 +26,8 @@ enabled:
     uuid: e153ca70-b543-4865-b4c5-b31d34185948
   - id: patbenatar.advanced-new-file
     uuid: 2cbad5ee-b4ab-4de8-a1c7-77fede846155
+  - id: raunofreiberg.vesper
+    uuid: 46345d4d-e3aa-4a4f-9f60-725237757d72
   - id: vscodevim.vim
     uuid: d96e79c6-8b25-4be3-8545-0e0ecefcae03
   - id: zokugun.cron-tasks

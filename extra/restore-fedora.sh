@@ -524,6 +524,11 @@ step_dotfiles() {
     || { err "~/.config/sway/config is not a stow symlink"; return 1; }
   ok "sway config stowed"
 
+  if [[ -f /usr/share/noctalia/assets/templates/sway/apply.sh ]]; then
+    sudo install -m 755 "$DOTFILES_DIR/extra/noctalia-sway-apply.sh" \
+      /usr/share/noctalia/assets/templates/sway/apply.sh
+  fi
+
   if need_cmd noctalia && noctalia msg templates-apply >/dev/null 2>&1; then
     ok "noctalia templates applied (gtk, qt, ghostty, sway)"
   else
