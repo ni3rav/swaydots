@@ -4,7 +4,7 @@
 mode = "dark"
 source = "wallpaper"
 builtin = "Tokyo-Night"
-wallpaper_scheme = "m3-monochrome"
+wallpaper_scheme = "m3-content"
 
 [bar]
 order = ["default"]
@@ -12,6 +12,7 @@ order = ["default"]
 [bar.default]
 auto_hide = false
 auto_hide_delay_ms = 0
+auto_hide_reserve_space = false
 background_opacity = 0.95
 border = "outline_variant"
 border_width = 0.0
@@ -57,6 +58,7 @@ widget_spacing = 20
 active_pill_size = 1.0
 anchor = true
 change_color_on_hover = false
+colorize_icons = true
 empty_color = "secondary_container"
 focused_color = "primary"
 font_scale = 1.0
@@ -79,6 +81,7 @@ format = "%b %d %H:%M"
 type = "clock"
 
 [widget.tray]
+colorize_icons = true
 drawer = true
 match_adjacent_spacing = true
 type = "tray"

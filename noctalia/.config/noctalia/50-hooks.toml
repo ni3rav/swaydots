@@ -1,0 +1,8 @@
+# Palette changes reload Sway and copy the live bar into this repo.
+# Bar edits are copied again the next time Noctalia starts.
+[hooks]
+started = "bash \"$HOME/.config/noctalia/hooks/sync-bar.sh\""
+colors_changed = [
+  "bash \"$HOME/.config/noctalia/hooks/sway-reload.sh\"",
+  "bash \"$HOME/.config/noctalia/hooks/sync-bar.sh\"",
+]

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Copy the live Noctalia bar into the stowed config. Run it when you want
-# that file to catch up. Noctalia itself applies bar edits immediately.
+# Noctalia hook. Copies the live bar into the stowed 10-bar.toml.
+# Noctalia applies bar edits immediately; this only updates the repo copy.
 set -euo pipefail
 
-root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+script="$(readlink -f "${BASH_SOURCE[0]}")"
+root="$(cd -- "$(dirname -- "$script")/../../../.." && pwd)"
 exec python3 - "$root" <<'PY'
 import subprocess
 import sys

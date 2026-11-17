@@ -19,6 +19,7 @@ Repo: `~/swaydots`. Stow maps packages into `$HOME`.
 4. Always `stow -v --no-folding <pkgs…>` from repo root.
 5. Surgical changes only; match existing style.
 6. Thin thread: **Sway = WM/keybinds only**; **Noctalia = bar/launcher/OSD/lock/screenshots**.
+7. Do not add a background watcher. Use a Noctalia feature such as a template hook. If a watcher is the only option, explain why and wait for approval before adding one.
 
 Packages: `sway` `xdg` `noctalia` `nwg-displays` `zsh` `starship` `ghostty` `fonts` `git` `codium` `cursor` `fastfetch` `herdr` `opencode`.
 

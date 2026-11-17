@@ -21,8 +21,10 @@ cd ~/swaydots && stow -v --no-folding zsh
 
 ## Save the Noctalia bar
 
+Noctalia copies the live bar on startup and when the palette changes. To copy it now:
+
 ```bash
-bash ~/swaydots/extra/sync-noctalia-bar.sh
+bash ~/.config/noctalia/hooks/sync-bar.sh
 ```
 
 ## Restore / validate
