@@ -3,7 +3,7 @@
 | Package | Home targets | Notes |
 |---------|--------------|--------|
 | `sway` | `~/.config/sway` | Modular `config.d/`; no Fedora `/etc/sway/config` |
-| `xdg` | mimeapps, portals, terminals, autostart hides | Dolphin + Kate; Ghostty terminal; `wlr;gtk` portals |
+| `xdg` | mimeapps, portals, terminals, autostart hides | Thunar + Kate; Ghostty terminal; `wlr;gtk` portals |
 | `zsh` | `~/.zshrc`, `~/.zsh` | Plugin submodules; one `.zshrc` |
 | `starship` | `~/.config/starship.toml` | COPR `atim/starship` |
 | `ghostty` | `~/.config/ghostty/config.ghostty` | TokyoNight + JetBrainsMono NF |
@@ -16,7 +16,7 @@
 - Includes `/etc/sway/config.d/*` (Fedora `sway-systemd`) then `config.d/*.conf`.
 - Workspaces 1–9 stay on `eDP-1`. `$mod+1`…`$mod+9` switch; `$mod+Shift+1`…`$mod+Shift+9` move the focused window.
 - Caps→Esc via `input type:keyboard { xkb_options caps:escape }`. Num Lock stays on (`xkb_numlock enabled`).
-- Apps: Ghostty (`$mod+Return`), Dolphin (`$mod+f`), Firefox (`$mod+b`).
+- Apps: Ghostty (`$mod+Return`), Thunar (`$mod+f`), Firefox (`$mod+b`).
 - Noctalia IPC via `$ipc` (`noctalia msg`): launcher, clipboard, settings, control center (`$mod+o`), media, screenshots, lock.
 - `$mod+period` → launcher `/emo` (emoji).
 
@@ -29,9 +29,9 @@
 - Window borders come from `~/.config/sway/noctalia`. The `colors_changed` hook runs `hooks/sway-reload.sh` (`swaymsg reload`) after the palette is written.
 - Plugin `micahg/nwg-displays` is enabled. The bar lists `laptop`, `extend`, and `clone`. Extend places whatever monitor is plugged in to the right at its own resolution. Clone shows a fullscreen copy of the built-in screen on it (`wl-mirror`). `/usr/local/bin/nwg-displays-apply` runs `extra/display-layout.sh` for those three names.
 - Power profiles: keep Fedora `tuned-ppd` (do not install `power-profiles-daemon`; they conflict).
-- Desktop apps that stay: Dolphin, Kate, and Ark. Clock is GNOME Clocks (`gnome-clocks`); camera is Snapshot (`snapshot`). KDE Connect pairs a phone; the indicator autostarts and the firewall allows `kdeconnect` (tcp/udp 1714-1764). System Settings, System Monitor, KClock, and Kamoso are removed; they do not work under Sway.
+- Desktop apps that stay: Thunar, Kate, and Ark. Thunar uses `adw-gtk3-dark`, which reads the Noctalia GTK color names, and Papirus-Dark. Open Terminal launches Ghostty (`TerminalEmulator=ghostty` in `~/.config/xfce4/helpers.rc`). `thunar --daemon` watches USB and MTP volumes; gvfs-mtp, gvfs-gphoto2, and gvfs-afc are installed. The xfce4-panel package stays because Thunar links its library, and the panel is not started. Clock is GNOME Clocks (`gnome-clocks`); camera is Snapshot (`snapshot`). KDE Connect pairs a phone; the indicator autostarts and the firewall allows `kdeconnect` (tcp/udp 1714-1764). System Settings, System Monitor, KClock, and Kamoso are removed; they do not work under Sway.
 - Notifications: Noctalia owns `org.freedesktop.Notifications`. Mask/remove `dunst`.
-- Purge Sway-spin leftovers on restore: Thunar, rofi, foot, xfce4-panel.
+- Purge Sway-spin leftovers on restore: Dolphin, rofi, foot.
 
 ## Stow
 

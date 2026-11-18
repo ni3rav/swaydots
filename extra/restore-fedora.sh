@@ -95,7 +95,8 @@ step_core_packages() {
     python3-pip \
     sway sway-systemd xdg-user-dirs \
     noctalia \
-    dolphin kate qt6ct kio-extras ark \
+    Thunar thunar-volman thunar-archive-plugin tumbler adw-gtk3-theme \
+    kate qt6ct ark \
     gnome-clocks snapshot \
     gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb libmtp \
     blueman brightnessctl pavucontrol pulseaudio-utils \
@@ -182,18 +183,19 @@ step_notifications_noctalia() {
 
 step_purge_stale() {
   sudo dnf remove -y --setopt=install_weak_deps=False \
-    Thunar thunar-archive-plugin tumbler xarchiver \
+    dolphin kio-extras \
+    xarchiver \
     rofi rofi-themes \
     foot \
-    xfce4-panel \
     plasma-systemsettings plasma-systemmonitor kclock kamoso \
     mousepad xfce4-terminal \
     dmenu bemenu wofi \
     2>/dev/null || true
 
   local stale=(
-    "$HOME/.config/Thunar"
-    "$HOME/.config/xfce4"
+    "$HOME/.config/dolphinrc"
+    "$HOME/.local/share/dolphin"
+    "$HOME/.local/share/kxmlgui5/dolphin"
     "$HOME/.config/rofi"
     "$HOME/.config/foot"
     "$HOME/.config/xarchiver"
@@ -464,6 +466,7 @@ step_github_cli() {
 step_papirus_icons() {
   sudo dnf install -y papirus-icon-theme
   gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' 2>/dev/null || true
+  gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' 2>/dev/null || true
   if need_cmd kwriteconfig6; then
     kwriteconfig6 --file kdeglobals --group Icons --key Theme Papirus-Dark
   elif need_cmd kwriteconfig5; then
@@ -551,7 +554,7 @@ main() {
   run_step "Install core packages (sway + noctalia)" step_core_packages
   run_step "Install KDE Connect" step_kdeconnect
   run_step "Install nwg-displays" step_nwg_displays
-  run_step "Purge Sway-spin leftovers (rofi/Thunar/foot/…)" step_purge_stale
+  run_step "Purge Sway-spin leftovers (rofi/Dolphin/foot/…)" step_purge_stale
   run_step "Install Noctalia (ensure)" step_noctalia
   run_step "Hand notifications to Noctalia" step_notifications_noctalia
   run_step "Install Ghostty (COPR)" step_ghostty

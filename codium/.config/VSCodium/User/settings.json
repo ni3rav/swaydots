@@ -103,7 +103,6 @@
   "editor.cursorBlinking": "expand",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.minimap.size": "fit",
-  "workbench.sideBar.location": "right",
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "editor.guides.indentation": false,
   "editor.cursorStyle": "line",
