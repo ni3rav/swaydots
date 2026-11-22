@@ -106,7 +106,7 @@ step_core_packages() {
     xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
     jq \
     openssh-clients \
-    greetd
+    greetd gnome-keyring-pam
 }
 
 step_starship() {
@@ -217,7 +217,7 @@ step_noctalia_greeter_pkgs() {
       --repofrompath "terra,https://repos.fyralabs.com/terra$(rpm -E %fedora)" \
       terra-release
   fi
-  sudo dnf install -y noctalia-greeter greetd
+  sudo dnf install -y noctalia-greeter greetd gnome-keyring-pam
   need_cmd noctalia-greeter-session \
     || { err "noctalia-greeter-session missing after install"; return 1; }
   sudo mkdir -p /etc/polkit-1/rules.d
