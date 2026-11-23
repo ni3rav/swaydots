@@ -26,6 +26,7 @@
 - Autostart: `exec noctalia` in `10-autostart.conf`.
 - Install: `sudo dnf install noctalia` (Fedora 44+).
 - Greeter: Terra → `noctalia-greeter`; cutover with `SWAYDOTS_ENABLE_GREETD=1` then **reboot**. Fedora uses `user = "greetd"` in `/etc/greetd/config.toml`. `gnome-keyring-pam` is installed so greetd unlocks the `login` keyring with the login password. `shell.greeter_sync.auto_sync` is on, and `extra/50-noctalia-greeter.rules` lets the active user sync the palette.
+- Everything is opaque with no blur: bar and panels (`10-bar.toml`, `transparency_mode = "solid"`), dock, OSD, toasts, backdrop and lock screen (`15-solid.toml`), and Ghostty (default opacity).
 - Bar edits apply immediately. `~/.config/noctalia/50-hooks.toml` runs `hooks/sync-bar.sh` on `started` and `colors_changed`, which copies the live bar into `10-bar.toml`. Run that script to copy the bar before the next start or palette change.
 - Window borders come from `~/.config/sway/noctalia`. The `colors_changed` hook runs `hooks/sway-reload.sh` (`swaymsg reload`) after the palette is written.
 - Local plugin `swaydots/bar` (`~/.local/share/noctalia/plugins/swaydots-bar`, stowed from `noctalia`) adds two bar widgets: `workspaces` always lists 1–6 (empty ones dimmed), and `media` is a music glyph shown only while a player is playing or paused (`playerctl --follow`).

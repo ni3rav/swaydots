@@ -1,0 +1,17 @@
+# Every surface opaque, no blur. Noctalia defaults the dock, OSD and toasts to translucent.
+
+[dock]
+background_opacity = 1.0
+compositor_blur = false
+
+[osd]
+background_opacity = 1.0
+
+[notification]
+background_opacity = 1.0
+
+[backdrop]
+enabled = false
+
+[lockscreen]
+blurred_desktop = false

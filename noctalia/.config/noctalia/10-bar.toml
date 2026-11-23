@@ -4,7 +4,7 @@
 mode = "dark"
 source = "wallpaper"
 builtin = "Tokyo-Night"
-wallpaper_scheme = "muted"
+wallpaper_scheme = "m3-monochrome"
 
 [bar]
 order = ["default"]
@@ -13,7 +13,7 @@ order = ["default"]
 auto_hide = false
 auto_hide_delay_ms = 0
 auto_hide_reserve_space = false
-background_opacity = 0.95
+background_opacity = 1.0
 border = "outline_variant"
 border_width = 0.0
 capsule = false
@@ -99,6 +99,7 @@ show_label = false
 type = "bluetooth"
 
 [shell.panel]
+transparency_mode = "solid"
 launcher_placement = "floating"
 launcher_position = "center"
 open_near_click_launcher = false
