@@ -438,6 +438,11 @@ step_cursor_cli() {
   curl -fsS https://cursor.com/install | bash
   restore_zshrc_if_clobbered
   refresh_path
+  # The CLI rewrites cli-config.json with account state, so it is seeded once, not stowed.
+  if [[ ! -e "$HOME/.cursor/cli-config.json" ]]; then
+    install -Dm 644 "$DOTFILES_DIR/extra/cursor-cli-config.json" "$HOME/.cursor/cli-config.json"
+    ok "seeded ~/.cursor/cli-config.json"
+  fi
   if need_cmd agent; then
     ok "cursor agent $(agent --version 2>/dev/null || echo installed)"
     return 0

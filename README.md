@@ -22,7 +22,7 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 | `fonts` | fonts + fontconfig |
 | `git` | `~/.gitconfig` |
 | `codium` | VSCodium settings and keybindings. The default profile is the dev extension set; `jupyter` is the other profile |
-| `cursor` | Cursor editor settings, plus `~/.cursor/cli-config.json` for the agent CLI |
+| `cursor` | Cursor editor settings; the restore script seeds `~/.cursor/cli-config.json` from `extra/cursor-cli-config.json` if it is missing |
 | `brave-origin` | Brave Origin extension list and keyboard shortcuts |
 
 Both VSCodium profiles read the same settings and keybindings: Dark Modern, the activity bar hidden, and the command center off. Extension lists are `codium/sync/profiles/dev` and `codium/sync/profiles/jupyter`. After installing an extension, run **Sync Settings: Upload** in that profile.

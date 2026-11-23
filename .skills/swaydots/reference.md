@@ -10,7 +10,7 @@
 | `ghostty` | `~/.config/ghostty/config.ghostty` | TokyoNight + JetBrainsMono NF |
 | `fonts` | fonts + fontconfig | JetBrainsMono NF, Plus Jakarta Sans, Noto Indic |
 | `git` | `~/.gitconfig` | |
-| `codium` / `cursor` | User settings/keybindings | Default profile is the dev extension list; `jupyter` is the only other profile. Both use the same settings: Dark Modern, hidden activity bar, command center off. New extensions: **Sync Settings: Upload** in that profile (`codium/sync`). `cursor` also stows `~/.cursor/cli-config.json` (no account caches) |
+| `codium` / `cursor` | User settings/keybindings | Default profile is the dev extension list; `jupyter` is the only other profile. Both use the same settings: Dark Modern, hidden activity bar, command center off. New extensions: **Sync Settings: Upload** in that profile (`codium/sync`). `~/.cursor/cli-config.json` is seeded once from `extra/cursor-cli-config.json` by `step_cursor_cli`, not stowed, because the CLI rewrites it with account state |
 
 ## Sway
 
