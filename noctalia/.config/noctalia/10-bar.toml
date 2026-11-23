@@ -73,7 +73,7 @@ type = "tray"
 type = "swaydots/bar:media"
 
 [widget.battery]
-display_mode = "glyph"
+display_mode = "none"
 hide_when_full = false
 hide_when_plugged = false
 scale = 1.0

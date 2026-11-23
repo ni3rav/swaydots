@@ -469,6 +469,17 @@ step_papirus_icons() {
   fi
 }
 
+# xfconfd replaces thunar.xml on every write, so these are set rather than stowed.
+step_thunar_prefs() {
+  need_cmd xfconf-query || { warn "xfconf-query missing; Thunar keeps its defaults"; return 0; }
+  local prop
+  for prop in misc-volume-management:true misc-show-thumbnails:true \
+    misc-symbolic-icons-in-sidepane:false misc-symbolic-icons-in-toolbar:false; do
+    xfconf-query -c thunar -p "/${prop%%:*}" -n -t bool -s "${prop#*:}"
+  done
+  ok "Thunar: volume management, thumbnails, full-colour icons"
+}
+
 step_firefox_theme() {
   bash "$DOTFILES_DIR/extra/firefox-theme.sh"
   ok "Pywalfox host installed; Firefox force-installs the extension on next start"
@@ -634,6 +645,7 @@ main() {
   run_step "Install Flatpak apps (OBS, OnlyOffice, Resources)" step_flatpaks
   run_step "Install GitHub CLI" step_github_cli
   run_step "Install Papirus icon theme" step_papirus_icons
+  run_step "Set Thunar preferences" step_thunar_prefs
   run_step "Theme Firefox with Pywalfox" step_firefox_theme
   run_step "Make Brave Origin the default browser" step_brave_origin
   run_step "Stow packages + validate sway" step_dotfiles
