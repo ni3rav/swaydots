@@ -4,7 +4,7 @@
 mode = "dark"
 source = "wallpaper"
 builtin = "Tokyo-Night"
-wallpaper_scheme = "m3-monochrome"
+wallpaper_scheme = "muted"
 
 [bar]
 order = ["default"]
