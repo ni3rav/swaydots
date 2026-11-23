@@ -4,7 +4,7 @@
 |---------|--------------|--------|
 | `sway` | `~/.config/sway` | Modular `config.d/`; no Fedora `/etc/sway/config` |
 | `xdg` | mimeapps, portals, terminals, autostart hides | Thunar + Kate; Ghostty terminal; Brave Origin default browser; `wlr;gtk` portals |
-| `brave-origin` | `~/.config/BraveSoftware/Brave-Origin/swaydots/extensions.json` | Installed extensions and the Proton Pass shortcut. Restore force-installs that list. |
+| `brave-origin` | `~/.config/BraveSoftware/Brave-Origin/swaydots/extensions.json` | Installed extensions and the Proton Pass shortcut. Restore force-installs that list. The Noctalia theme can't be installed by policy or by editing Preferences (Secure Preferences is MAC-signed): load `~/.local/share/noctalia/brave-origin-theme` unpacked once per profile. The template hook sets dark mode and the accent seed only while Brave is closed. |
 | `zsh` | `~/.zshrc`, `~/.zsh` | Plugin submodules; one `.zshrc` |
 | `starship` | `~/.config/starship.toml` | COPR `atim/starship` |
 | `ghostty` | `~/.config/ghostty/config.ghostty` | TokyoNight + JetBrainsMono NF |

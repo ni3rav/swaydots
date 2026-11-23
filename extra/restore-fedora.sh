@@ -553,6 +553,7 @@ with open(path, "w") as fh:
 PY
   fi
   ok "Brave Origin is the default browser"
+  warn "Brave Origin theme (once per profile): brave://extensions → Developer mode → Load unpacked → ~/.local/share/noctalia/brave-origin-theme"
 }
 
 step_dotfiles() {
