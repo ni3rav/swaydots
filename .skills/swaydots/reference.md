@@ -3,7 +3,8 @@
 | Package | Home targets | Notes |
 |---------|--------------|--------|
 | `sway` | `~/.config/sway` | Modular `config.d/`; no Fedora `/etc/sway/config` |
-| `xdg` | mimeapps, portals, terminals, autostart hides | Thunar + Kate; Ghostty terminal; `wlr;gtk` portals |
+| `xdg` | mimeapps, portals, terminals, autostart hides | Thunar + Kate; Ghostty terminal; Brave Origin default browser; `wlr;gtk` portals |
+| `brave-origin` | `~/.config/BraveSoftware/Brave-Origin/swaydots/extensions.json` | Installed extensions and the Proton Pass shortcut. Restore force-installs that list. |
 | `zsh` | `~/.zshrc`, `~/.zsh` | Plugin submodules; one `.zshrc` |
 | `starship` | `~/.config/starship.toml` | COPR `atim/starship` |
 | `ghostty` | `~/.config/ghostty/config.ghostty` | TokyoNight + JetBrainsMono NF |
@@ -16,7 +17,7 @@
 - Includes `/etc/sway/config.d/*` (Fedora `sway-systemd`) then `config.d/*.conf`.
 - Workspaces 1–9 stay on `eDP-1`. `$mod+1`…`$mod+9` switch; `$mod+Shift+1`…`$mod+Shift+9` move the focused window.
 - Caps→Esc via `input type:keyboard { xkb_options caps:escape }`. Num Lock stays on (`xkb_numlock enabled`).
-- Apps: Ghostty (`$mod+Return`), Thunar (`$mod+f`), Firefox (`$mod+b`).
+- Apps: Ghostty (`$mod+Return`), Thunar (`$mod+f`), Brave Origin (`$mod+b`). Firefox stays installed.
 - Noctalia IPC via `$ipc` (`noctalia msg`): launcher, clipboard, settings, control center (`$mod+o`), media, screenshots, lock.
 - `$mod+period` → launcher `/emo` (emoji).
 

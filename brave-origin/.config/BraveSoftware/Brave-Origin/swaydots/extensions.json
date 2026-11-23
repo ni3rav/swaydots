@@ -1,0 +1,37 @@
+{
+  "pinned": [
+    "pkehgijcmpdhfbdbbnkijodmdjhbjlgp",
+    "khncfooichmfjbepaaaebmommgaepoid",
+    "mnjggcdmjocbbbhaepdhchncahnbgone",
+    "ghmbeldphafepmbegfdlkpapadhbakde"
+  ],
+  "extensions": [
+    {
+      "id": "pkehgijcmpdhfbdbbnkijodmdjhbjlgp",
+      "name": "Privacy Badger",
+      "version": "2026.9.15.2"
+    },
+    {
+      "id": "khncfooichmfjbepaaaebmommgaepoid",
+      "name": "Unhook - Remove YouTube Recommended & Shorts",
+      "version": "1.6.9"
+    },
+    {
+      "id": "mnjggcdmjocbbbhaepdhchncahnbgone",
+      "name": "SponsorBlock for YouTube - Skip Sponsorships",
+      "version": "6.1.6"
+    },
+    {
+      "id": "ghmbeldphafepmbegfdlkpapadhbakde",
+      "name": "Proton Pass: Free Password Manager",
+      "version": "1.44.0"
+    }
+  ],
+  "commands": {
+    "linux:Ctrl+Shift+X": {
+      "command_name": "_execute_action",
+      "extension": "ghmbeldphafepmbegfdlkpapadhbakde",
+      "global": false
+    }
+  }
+}

@@ -479,6 +479,71 @@ step_firefox_theme() {
   ok "Pywalfox host installed; Firefox force-installs the extension on next start"
 }
 
+step_brave_origin() {
+  if ! rpm -q brave-origin >/dev/null 2>&1; then
+    if [[ ! -f /etc/yum.repos.d/brave-browser.repo ]]; then
+      sudo tee /etc/yum.repos.d/brave-browser.repo >/dev/null <<'EOF'
+[brave-browser]
+name=Brave Browser
+enabled=1
+gpgcheck=1
+gpgkey=https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+baseurl=https://brave-browser-rpm-release.s3.brave.com/$basearch
+EOF
+    fi
+    sudo dnf install -y brave-origin
+  fi
+
+  xdg-mime default brave-origin.desktop \
+    x-scheme-handler/http x-scheme-handler/https text/html \
+    x-scheme-handler/about x-scheme-handler/unknown
+  xdg-settings set default-web-browser brave-origin.desktop 2>/dev/null || true
+
+  local spec="$DOTFILES_DIR/brave-origin/.config/BraveSoftware/Brave-Origin/swaydots/extensions.json"
+  [[ -f "$spec" ]] || { err "missing $spec"; return 1; }
+
+  sudo mkdir -p /etc/brave/policies/managed
+  python3 - "$spec" > /tmp/swaydots-brave-origin.json <<'PY'
+import json, sys
+spec = json.load(open(sys.argv[1]))
+settings = {
+    ext["id"]: {
+        "installation_mode": "force_installed",
+        "update_url": "https://clients2.google.com/service/update2/crx",
+        "toolbar_pin": "force_pinned",
+    }
+    for ext in spec["extensions"]
+}
+json.dump({"ExtensionSettings": settings}, sys.stdout, indent=2)
+print()
+PY
+  sudo cp /tmp/swaydots-brave-origin.json /etc/brave/policies/managed/swaydots.json
+  sudo chmod 644 /etc/brave/policies/managed/swaydots.json
+  rm -f /tmp/swaydots-brave-origin.json
+
+  local prefs="$HOME/.config/BraveSoftware/Brave-Origin/Default/Preferences"
+  if [[ -f "$prefs" ]] && ! pgrep -f '/opt/brave.com/brave-origin/brave$' >/dev/null; then
+    python3 - "$spec" "$prefs" <<'PY'
+import json, sys
+spec = json.load(open(sys.argv[1]))
+path = sys.argv[2]
+prefs = json.load(open(path))
+ext = prefs.setdefault("extensions", {})
+commands = ext.setdefault("commands", {})
+commands.update(spec.get("commands") or {})
+pinned = list(spec.get("pinned") or [])
+current = list(ext.get("pinned_extensions") or [])
+for item in pinned:
+    if item not in current:
+        current.append(item)
+ext["pinned_extensions"] = current
+with open(path, "w") as fh:
+    json.dump(prefs, fh, separators=(",", ":"))
+PY
+  fi
+  ok "Brave Origin is the default browser"
+}
+
 step_dotfiles() {
   [[ -d "$DOTFILES_DIR" ]] || { err "DOTFILES_DIR missing: $DOTFILES_DIR"; return 1; }
   cd "$DOTFILES_DIR"
@@ -501,7 +566,7 @@ step_dotfiles() {
 
   local pkgs=()
   local p
-  for p in sway xdg noctalia nwg-displays ghostty zsh starship fonts git codium cursor fastfetch herdr opencode; do
+  for p in sway xdg noctalia nwg-displays ghostty zsh starship fonts git codium cursor fastfetch herdr opencode brave-origin; do
     [[ -d "$DOTFILES_DIR/$p" ]] && pkgs+=("$p")
   done
   ((${#pkgs[@]})) || { err "no stow packages found under $DOTFILES_DIR"; return 1; }
@@ -575,6 +640,7 @@ main() {
   run_step "Install GitHub CLI" step_github_cli
   run_step "Install Papirus icon theme" step_papirus_icons
   run_step "Theme Firefox with Pywalfox" step_firefox_theme
+  run_step "Make Brave Origin the default browser" step_brave_origin
   run_step "Stow packages + validate sway" step_dotfiles
 
   restore_zshrc_if_clobbered
