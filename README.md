@@ -12,6 +12,7 @@ Home paths are symlinks into this tree — edit here, then commit. Don’t repla
 | `xdg` | mimeapps, portals, `environment.d` + `qt6ct` for Qt theming |
 | `noctalia` | bar + builtin and community theme templates |
 | `nwg-displays` | `~/.config/nwg-displays/profiles` |
+| `displays` | `~/.local/bin/displays` (display layout picker, Super+P) |
 | `zsh` | `~/.zshrc`, `~/.zsh` plugins (submodules) |
 | `starship` | `~/.config/starship.toml` (Noctalia palette block included) |
 | `ghostty` | `~/.config/ghostty/config.ghostty` (`theme = noctalia`) |
@@ -42,13 +43,13 @@ Enabled templates:
 | libreoffice, brave, brave-origin, chromium-based | Enabled. The hooks need the app installed (and a browser profile, or Chromium's one-time policy setup) before they can write. |
 | pywalfox | Firefox follows the palette. Noctalia is the native host. `bash extra/firefox-theme.sh` installs the host and the extension policy; restart Firefox after. |
 
-`extra/restore-fedora.sh` installs fastfetch, Papirus, `adw-gtk3-theme`, and the Cursor agent CLI (`agent` on `~/.local/bin`), installs the Pywalfox host, stows the packages above, then runs `noctalia msg templates-apply`. Desktop apps are Thunar, Kate, Ark, GNOME Clocks, Snapshot, and KDE Connect. Brave Origin is the default browser, and Super+B opens it. Super+F opens Thunar. Super+E opens Noctalia settings. Super+1 through Super+9 switch workspaces, and Super+Shift+1 through Super+Shift+9 move the focused window. The lock screen fades in over 200 ms. Bar edits and the login-screen palette apply on their own. Window borders come from the Noctalia sway template. The `colors_changed` hook reloads Sway so the border color follows the palette, and copies the live bar into `10-bar.toml`. The same bar copy also runs when Noctalia starts. Run `bash ~/.config/noctalia/hooks/sync-bar.sh` to copy the bar immediately.
+`extra/restore-fedora.sh` installs fastfetch, Papirus, `adw-gtk3-theme`, and the Cursor agent CLI (`agent` on `~/.local/bin`), installs the Pywalfox host, stows the packages above, then runs `noctalia msg templates-apply`. Desktop apps are Thunar, Kate, Ark, GNOME Clocks, Snapshot, and KDE Connect. Brave Origin is the default browser, and Super+B opens it. Super+F opens Thunar. Super+E opens Noctalia settings. Super+1 through Super+6 switch workspaces, and Super+Shift+1 through Super+Shift+6 move the focused window. Super+P runs `displays`, which picks `laptop`, `extend`, or `clone` in the Noctalia launcher; `displays extend` skips the picker. The lock screen fades in over 200 ms. Bar edits and the login-screen palette apply on their own. Window borders come from the Noctalia sway template. The `colors_changed` hook reloads Sway so the border color follows the palette, and copies the live bar into `10-bar.toml`. The same bar copy also runs when Noctalia starts. Run `bash ~/.config/noctalia/hooks/sync-bar.sh` to copy the bar immediately.
 
 ```bash
 git clone --recurse-submodules <repo-url> ~/swaydots
 cd ~/swaydots
 git submodule update --init --recursive
-stow -v --no-folding sway xdg noctalia nwg-displays zsh starship ghostty fonts git codium cursor fastfetch herdr opencode brave-origin
+stow -v --no-folding sway xdg noctalia nwg-displays displays zsh starship ghostty fonts git codium cursor fastfetch herdr opencode brave-origin
 fc-cache -fv
 ```
 

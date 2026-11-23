@@ -27,7 +27,7 @@ compositor_blur = false
 concave_edge_corners = false
 contact_shadow = false
 enabled = true
-end = [ "tray", "notifications", "battery", "sysmon", "power_profile", "widget", "brightness", "volume", "network", "bluetooth", "media", "session" ]
+end = [ "tray", "media", "notifications", "battery", "brightness", "volume", "network", "bluetooth", "session" ]
 font_family = "JetBrainsMono NF"
 font_scale = 1.0
 font_weight = 500
@@ -36,7 +36,7 @@ layer = "top"
 margin_edge = 0
 margin_ends = 0
 margin_opposite_edge = 0
-padding = 20
+padding = 12
 panel_overlap = 0
 position = "top"
 radius = 0
@@ -51,32 +51,15 @@ show_on_workspace_switch = true
 show_tooltip = true
 smart_auto_hide = false
 start = [ "workspaces" ]
-thickness = 30
-widget_spacing = 20
+thickness = 28
+widget_spacing = 16
 
 [widget.workspaces]
-active_pill_size = 1.0
 anchor = true
-change_color_on_hover = false
-colorize_icons = true
-empty_color = "secondary_container"
-focused_color = "primary"
-font_scale = 1.0
-hide_when_empty = false
-label_source = "id"
-labels_only_when_occupied = false
-occupied_color = "secondary_container"
-show_icons = false
-show_labels = true
-style = "regular"
-type = "workspaces"
-urgent_color = "error"
+type = "swaydots/bar:workspaces"
 
 [widget.clock]
 anchor = false
-font_family = "JetBrainsMono Nerd Font"
-font_scale = 1.0
-font_weight = 400
 format = "%b %d %H:%M"
 type = "clock"
 
@@ -86,47 +69,34 @@ drawer = true
 match_adjacent_spacing = true
 type = "tray"
 
+[widget.media]
+type = "swaydots/bar:media"
+
 [widget.battery]
-display_mode = "graphic"
+display_mode = "glyph"
 hide_when_full = false
 hide_when_plugged = false
 scale = 1.0
 show_label = true
 type = "battery"
 
-[widget.widget]
-type = "micahg/nwg-displays:widget"
-
 [widget.brightness]
-scale = 1.2
 show_label = false
 type = "brightness"
 
 [widget.volume]
 device = "output"
-scale = 1.2
 show_label = false
 type = "volume"
 
 [widget.network]
-scale = 1.2
 show_label = false
 type = "network"
-vpn_status = "both"
+vpn_status = "replace"
 
 [widget.bluetooth]
-scale = 1.15
 show_label = false
 type = "bluetooth"
-
-[widget.media]
-album_art_only = true
-art_size = 20
-hide_when_no_media = true
-max_length = 220.0
-min_length = 82
-title_scroll = "none"
-type = "media"
 
 [shell.panel]
 launcher_placement = "floating"

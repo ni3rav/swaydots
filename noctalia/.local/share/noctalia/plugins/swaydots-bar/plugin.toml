@@ -1,0 +1,32 @@
+# Bar widgets Noctalia doesn't ship: pinned sway workspaces and a glyph-only media button.
+
+id = "swaydots/bar"
+name = "Swaydots Bar"
+version = "1.0.0"
+plugin_api = 43
+author = "ni3rav"
+license = "MIT"
+icon = "layout-grid"
+dependencies = ["swaymsg", "playerctl"]
+tags = ["bar", "sway"]
+description = "Workspaces 1-6 always listed as numbers; a music glyph shown only while a player is active."
+
+[[widget]]
+id = "workspaces"
+entry = "workspaces.luau"
+
+  [widget.actions]
+  scroll_up = "workspace-switch prev"
+  scroll_down = "workspace-switch next"
+
+[[widget]]
+id = "media"
+entry = "media.luau"
+
+  [widget.actions]
+  left = "panel-toggle control-center media"
+  right = "media toggle"
+  back = "media previous"
+  forward = "media next"
+  scroll_up = "media next"
+  scroll_down = "media previous"

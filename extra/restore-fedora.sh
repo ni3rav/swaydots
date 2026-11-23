@@ -166,11 +166,6 @@ step_kdeconnect() {
 step_nwg_displays() {
   sudo dnf install -y nwg-displays wl-mirror
   sudo install -m 755 "$DOTFILES_DIR/extra/nwg-displays-apply" /usr/local/bin/nwg-displays-apply
-  if need_cmd noctalia && noctalia msg plugins enable micahg/nwg-displays >/dev/null 2>&1; then
-    ok "nwg-displays plugin enabled"
-  else
-    warn "nwg-displays plugin enables once Noctalia is up"
-  fi
 }
 
 step_notifications_noctalia() {
@@ -566,7 +561,7 @@ step_dotfiles() {
 
   local pkgs=()
   local p
-  for p in sway xdg noctalia nwg-displays ghostty zsh starship fonts git codium cursor fastfetch herdr opencode brave-origin; do
+  for p in sway xdg noctalia nwg-displays displays ghostty zsh starship fonts git codium cursor fastfetch herdr opencode brave-origin; do
     [[ -d "$DOTFILES_DIR/$p" ]] && pkgs+=("$p")
   done
   ((${#pkgs[@]})) || { err "no stow packages found under $DOTFILES_DIR"; return 1; }

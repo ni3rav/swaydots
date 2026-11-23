@@ -21,7 +21,7 @@ Repo: `~/swaydots`. Stow maps packages into `$HOME`.
 6. Thin thread: **Sway = WM/keybinds only**; **Noctalia = bar/launcher/OSD/lock/screenshots**.
 7. Do not add a background watcher. Use a Noctalia feature such as a template hook. If a watcher is the only option, explain why and wait for approval before adding one.
 
-Packages: `sway` `xdg` `noctalia` `nwg-displays` `zsh` `starship` `ghostty` `fonts` `git` `codium` `cursor` `fastfetch` `herdr` `opencode`.
+Packages: `sway` `xdg` `noctalia` `nwg-displays` `displays` `zsh` `starship` `ghostty` `fonts` `git` `codium` `cursor` `fastfetch` `herdr` `opencode`.
 
 See [reference.md](reference.md) and [workflows.md](workflows.md).
 

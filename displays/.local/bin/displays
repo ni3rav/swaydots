@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Switch the monitor layout. With no argument, pick one in the Noctalia launcher.
+#
+#   displays laptop   built-in screen only; external screens are turned off
+#   displays extend   every external screen to the right, each at its own resolution
+#   displays clone    fullscreen copy of the built-in screen on every external screen
+set -euo pipefail
+
+layout=${SWAYDOTS_DIR:-$HOME/swaydots}/extra/display-layout.sh
+
+menu=$'laptop   built-in screen only
+extend   external screens to the right, at their own resolution
+clone    copy of the built-in screen on external screens'
+
+usage() {
+  sed -n '2,6s/^# \{0,1\}//p' "$0"
+}
+
+profile=${1:-}
+if [[ -z $profile ]]; then
+  choice=$(printf '%s\n' "$menu" | noctalia dmenu -p "Display layout") || exit 0
+  profile=${choice%% *}
+fi
+
+case $profile in
+  laptop|extend|clone) ;;
+  -h|--help)
+    usage
+    exit 0
+    ;;
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac
+
+if ! err=$("$layout" "$profile" 2>&1 >/dev/null); then
+  notify-send -a Displays "Display layout failed" "${err:-$profile did not apply}"
+  exit 1
+fi
