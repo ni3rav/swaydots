@@ -22,12 +22,12 @@ capsule_fill = "surface_container"
 capsule_opacity = 1.0
 capsule_padding = 6.0
 capsule_thickness = 0.76
-center = [ "clock" ]
+center = [  ]
 compositor_blur = false
 concave_edge_corners = false
 contact_shadow = false
 enabled = true
-end = [ "tray", "media", "notifications", "battery", "brightness", "volume", "network", "bluetooth", "session" ]
+end = [ "tray", "media", "notifications", "cpu", "ram", "temp", "net_down", "net_up", "battery", "brightness", "volume", "network", "bluetooth", "session", "clock" ]
 font_family = "JetBrainsMono NF"
 font_scale = 1.0
 font_weight = 500
@@ -38,7 +38,7 @@ margin_ends = 0
 margin_opposite_edge = 0
 padding = 12
 panel_overlap = 0
-position = "top"
+position = "bottom"
 radius = 0
 radius_bottom_left = 0
 radius_bottom_right = 0
@@ -52,16 +52,11 @@ show_tooltip = true
 smart_auto_hide = false
 start = [ "workspaces" ]
 thickness = 28
-widget_spacing = 16
+widget_spacing = 20
 
 [widget.workspaces]
 anchor = true
 type = "swaydots/bar:workspaces"
-
-[widget.clock]
-anchor = false
-format = "%b %d %H:%M"
-type = "clock"
 
 [widget.tray]
 colorize_icons = true
@@ -71,6 +66,41 @@ type = "tray"
 
 [widget.media]
 type = "swaydots/bar:media"
+
+[widget.cpu]
+show_glyph = true
+show_value = true
+stat = "cpu_usage"
+type = "sysmon"
+visualization = "none"
+
+[widget.ram]
+show_glyph = true
+show_value = true
+stat = "ram_pct"
+type = "sysmon"
+visualization = "none"
+
+[widget.temp]
+show_glyph = true
+show_value = true
+stat = "cpu_temp"
+type = "sysmon"
+visualization = "none"
+
+[widget.net_down]
+show_glyph = true
+show_value = true
+stat = "net_rx"
+type = "sysmon"
+visualization = "none"
+
+[widget.net_up]
+show_glyph = true
+show_value = true
+stat = "net_tx"
+type = "sysmon"
+visualization = "none"
 
 [widget.battery]
 display_mode = "none"
@@ -97,6 +127,11 @@ vpn_status = "replace"
 [widget.bluetooth]
 show_label = false
 type = "bluetooth"
+
+[widget.clock]
+anchor = false
+format = "%b %d %a, %H:%M"
+type = "clock"
 
 [shell.panel]
 transparency_mode = "solid"

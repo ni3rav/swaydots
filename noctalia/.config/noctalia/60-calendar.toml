@@ -1,0 +1,3 @@
+# The Google account exposes several calendars; one invite can sit in more than one of them.
+[calendar]
+dedupe_events = true
