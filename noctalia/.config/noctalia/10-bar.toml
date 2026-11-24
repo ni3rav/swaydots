@@ -27,7 +27,7 @@ compositor_blur = false
 concave_edge_corners = false
 contact_shadow = false
 enabled = true
-end = [ "tray", "media", "notifications", "cpu", "ram", "temp", "net_down", "net_up", "battery", "brightness", "volume", "network", "bluetooth", "session", "clock" ]
+end = [ "tray", "notifications", "cpu", "ram", "temp", "net_down", "net_up", "battery", "brightness", "media", "volume", "network", "bluetooth", "session", "clock" ]
 font_family = "JetBrainsMono NF"
 font_scale = 1.0
 font_weight = 500
@@ -63,9 +63,6 @@ colorize_icons = true
 drawer = true
 match_adjacent_spacing = true
 type = "tray"
-
-[widget.media]
-type = "swaydots/bar:media"
 
 [widget.cpu]
 show_glyph = true
@@ -113,6 +110,9 @@ type = "battery"
 [widget.brightness]
 show_label = false
 type = "brightness"
+
+[widget.media]
+type = "swaydots/bar:media"
 
 [widget.volume]
 device = "output"
