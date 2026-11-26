@@ -9,7 +9,7 @@
 
 ## Add a package
 
-Mirror `$HOME` under a new top-level dir, stow it, update `reference.md` + restore `step_dotfiles` package list. Non-stowed stuff goes in `extra/` or `.stow-local-ignore`.
+Mirror `$HOME` under a new top-level dir, stow it, update `reference.md` + restore `step_dotfiles` package list. Non-stowed stuff goes in `extra/`. README screenshots stay in `assets/` and are not a package.
 
 ## Clobbered ~/.zshrc
 

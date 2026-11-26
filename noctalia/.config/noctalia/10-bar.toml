@@ -27,7 +27,7 @@ compositor_blur = false
 concave_edge_corners = false
 contact_shadow = false
 enabled = true
-end = [ "tray", "notifications", "cpu", "ram", "temp", "net_down", "net_up", "battery", "brightness", "media", "volume", "network", "bluetooth", "session", "clock" ]
+end = [ "tray", "notifications", "cpu", "ram", "temp", "battery", "brightness", "media", "volume", "network", "bluetooth", "session", "clock" ]
 font_family = "JetBrainsMono NF"
 font_scale = 1.0
 font_weight = 500
@@ -82,20 +82,6 @@ visualization = "none"
 show_glyph = true
 show_value = true
 stat = "cpu_temp"
-type = "sysmon"
-visualization = "none"
-
-[widget.net_down]
-show_glyph = true
-show_value = true
-stat = "net_rx"
-type = "sysmon"
-visualization = "none"
-
-[widget.net_up]
-show_glyph = true
-show_value = true
-stat = "net_tx"
 type = "sysmon"
 visualization = "none"
 

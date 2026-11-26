@@ -1,5 +1,13 @@
 # swaydots
 
+![Desktop: Thunar, Ghostty with fastfetch, and Firefox on noctalia.dev, over the dithered Earth wallpaper](assets/desktop.png)
+
+![Noctalia launcher over the same wallpaper](assets/launcher.png)
+
+Fedora 45 · Sway · Noctalia · Ghostty · zsh · JetBrainsMono Nerd Font
+
+Screenshots in `assets/` are not a Stow package.
+
 Fedora + Sway (WM) + Noctalia (shell), managed with GNU Stow (`stow -v --no-folding …` from this repo).
 
 Home paths are symlinks into this tree — edit here, then commit. Don’t replace a symlink with a regular file.

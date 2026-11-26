@@ -149,7 +149,7 @@
   "@azure.argTenant": "",
   "workbench.editor.empty.hint": "hidden",
   "chat.agentsControl.enabled": false,
-  "workbench.colorTheme": "Vesper",
+  "workbench.colorTheme": "Sequoia Monochrome",
   "chat.viewSessions.orientation": "stacked",
   "window.autoDetectColorScheme": false,
   "azureFunctions.showProjectWarning": false,

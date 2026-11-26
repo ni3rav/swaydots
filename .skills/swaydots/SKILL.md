@@ -15,7 +15,7 @@ Repo: `~/swaydots`. Stow maps packages into `$HOME`.
 
 1. One shell config: stowed `zsh/.zshrc` only. Never `.zshrc.local`.
 2. Edit in the repo (live paths are symlinks).
-3. Never stow `extra/`, `.skills/`, `.git`, docs, or the runtime `~/.cursor` tree. The `cursor` package holds editor settings only; `extra/cursor-cli-config.json` seeds the agent CLI config.
+3. Never stow `extra/`, `assets/`, `.skills/`, `.git`, docs, or the runtime `~/.cursor` tree. `assets/` holds README screenshots and ignores its pictures with `.stow-local-ignore`. The `cursor` package holds editor settings only; `extra/cursor-cli-config.json` seeds the agent CLI config.
 4. Always `stow -v --no-folding <pkgs…>` from repo root.
 5. Surgical changes only; match existing style.
 6. Thin thread: **Sway = WM/keybinds only**; **Noctalia = bar/launcher/OSD/lock/screenshots**.

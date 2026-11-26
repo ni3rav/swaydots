@@ -1,6 +1,6 @@
 {
   "logo": {
-    "type": "auto",
+    "type": "small",
     "color": {
       "1": "#63ffff",
       "2": "#63c6c6"
@@ -30,11 +30,6 @@
     "shell",
     "wm",
     "terminal",
-    "cpu",
-    "memory",
-    "disk",
-    "battery",
     "break",
-    "colors"
   ]
 }

@@ -1,0 +1,3 @@
+# Screenshots live in the repo only. Stow must not link them into $HOME.
+# Segment patterns are matched against the whole filename.
+.*\.png

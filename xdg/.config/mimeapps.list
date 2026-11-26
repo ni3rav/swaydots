@@ -5,6 +5,7 @@ video/mp2t=vlc.desktop;mpv.desktop;
 application/gzip=org.kde.ark.desktop
 application/javascript=org.kde.kate.desktop
 application/json=org.kde.kate.desktop
+application/pdf=org.mozilla.firefox.desktop
 application/sql=org.kde.kate.desktop
 application/toml=org.kde.kate.desktop
 application/vnd.rar=org.kde.ark.desktop
