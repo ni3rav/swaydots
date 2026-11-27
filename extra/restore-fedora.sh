@@ -97,7 +97,7 @@ step_core_packages() {
     noctalia \
     Thunar thunar-volman thunar-archive-plugin tumbler adw-gtk3-theme \
     kate qt6ct ark \
-    gnome-clocks snapshot \
+    gnome-clocks gnome-calculator snapshot \
     gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb libmtp \
     blueman brightnessctl pavucontrol pulseaudio-utils \
     python3-gobject \
@@ -212,6 +212,8 @@ step_noctalia_greeter_pkgs() {
       --repofrompath "terra,https://repos.fyralabs.com/terra$(rpm -E %fedora)" \
       terra-release
   fi
+  # Native Resources, not the Flatpak: same libadwaita app, no runtime.
+  sudo dnf install -y --setopt=install_weak_deps=False resources
   sudo dnf install -y noctalia-greeter greetd gnome-keyring-pam
   need_cmd noctalia-greeter-session \
     || { err "noctalia-greeter-session missing after install"; return 1; }
@@ -455,7 +457,7 @@ step_flatpaks() {
   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak install -y flathub com.obsproject.Studio
   flatpak install -y flathub org.onlyoffice.desktopeditors
-  flatpak install -y flathub net.nokyan.Resources
+  flatpak uninstall -y net.nokyan.Resources 2>/dev/null || true
 }
 
 step_github_cli() {
@@ -533,7 +535,9 @@ PY
   rm -f /tmp/swaydots-brave-origin.json
 
   local prefs="$HOME/.config/BraveSoftware/Brave-Origin/Default/Preferences"
-  if [[ -f "$prefs" ]] && ! pgrep -f '/opt/brave.com/brave-origin/brave$' >/dev/null; then
+  if pgrep -f '/opt/brave.com/brave-origin/brave$' >/dev/null; then
+    warn "Brave Origin is running; Use GTK is written the next time restore runs with it closed"
+  elif [[ -f "$prefs" ]]; then
     python3 - "$spec" "$prefs" <<'PY'
 import json, sys
 spec = json.load(open(sys.argv[1]))
@@ -548,12 +552,25 @@ for item in pinned:
     if item not in current:
         current.append(item)
 ext["pinned_extensions"] = current
+# Brave's Appearance setting "Use GTK". 1 is ui::SystemTheme::kGtk.
+theme = ext.setdefault("theme", {})
+theme["system_theme"] = 1
+theme["id"] = ""
+settings = ext.get("settings")
+if isinstance(settings, dict):
+    drop = [
+        key for key, value in settings.items()
+        if isinstance(value, dict)
+        and "noctalia/brave-origin-theme" in str(value.get("path") or "")
+    ]
+    for key in drop:
+        del settings[key]
 with open(path, "w") as fh:
     json.dump(prefs, fh, separators=(",", ":"))
 PY
+    ok "Brave Origin uses the GTK theme"
   fi
   ok "Brave Origin is the default browser"
-  warn "Brave Origin theme (once per profile): brave://extensions → Developer mode → Load unpacked → ~/.local/share/noctalia/brave-origin-theme"
 }
 
 step_dotfiles() {
@@ -648,7 +665,7 @@ main() {
   run_step "Install OpenCode" step_opencode
   run_step "Install VSCodium" step_codium
   run_step "Install Cursor agent CLI" step_cursor_cli
-  run_step "Install Flatpak apps (OBS, OnlyOffice, Resources)" step_flatpaks
+  run_step "Install Flatpak apps (OBS, OnlyOffice)" step_flatpaks
   run_step "Install GitHub CLI" step_github_cli
   run_step "Install Papirus icon theme" step_papirus_icons
   run_step "Set Thunar preferences" step_thunar_prefs
